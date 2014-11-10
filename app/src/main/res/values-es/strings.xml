@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Tiles Challenge</string>
+    <string name="app_author">Creative &amp; Fun APPS</string>
+    <string name="app_by">Rafa Navarro</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_main">Main</string>
+    <string name="card_back_title">texto card back title</string>
+    <string name="card_back_description">texto card back description</string>
+    <string name="description_image_1">texto description image 1</string>
+    <string name="start">¡TOCA PARA EMPEZAR!</string>
+    <string name="title_activity_game">Game</string>
+    <string name="button1">PRÁCTICA</string>
+    <string name="play">JUGAR</string>
+    <string name="button2">CONTRARRELOJ</string>
+    <string name="button3">MEMORIA</string>
+    <string name="button4">OPCIONES</string>
+    <string name="points">PUNTOS</string>
+    <string name="level">NIVEL</string>
+    <string name="lives">VIDAS</string>
+    <string name="life">vida</string>
+    <string name="bonus">BONUS</string>
+    <string name="info">INFO</string>
+    <string name="menu_score">Puntuaciones / Logros</string>
+    <string name="menu_share">Compartir</string>
+    <string name="menu_comment">Valora la app</string>
+    <string name="menu_help">Ayuda</string>
+    <string name="menu_config">Configuración</string>
+    <string name="easy">Fácil</string>
+    <string name="hard">Difícil</string>
+    <string name="all">Todos</string>
+    <string name="score_score">Puntuaciones</string>
+    <string name="score_ranking">Ranking</string>
+    <string name="score_archievements">VER LOGROS</string>
+    <string name="score_archievements2">VER PUNTUACIONES</string>
+    <string name="title_activity_score">Score</string>
+    <string name="score_header">PUNTUACIONES MÁXIMAS</string>
+    <string name="prefHard">Activa si buscas un desafío mayor</string>
+    <string name="prefHardTitle">Dificultad difícil</string>
+    <string name="prefDeleteScores">Pulsa para empezar de cero</string>
+    <string name="prefDeleteScoresTitle">Borrar estadísticas</string>
+    <string name="prefShowHelp">Vuelve a mostrar la ventana de ayuda al comienzo</string>
+    <string name="prefShowHelpTitle">Mostrar ayuda</string>
+    <string name="title_activity_preferences">Preferences</string>
+    <string name="preferences_dialog_scores">Se borrarán todas las puntuaciones y logros.\n¿Está seguro?</string>
+    <string name="preferences_dialog_showhelp">¿Desea continuar?</string>
+    <string name="preferences_dialog_accept">SI</string>
+    <string name="preferences_dialog_cancel">NO</string>
+    <string name="dialog_new_highscore">¡NUEVO RÉCORD PERSONAL!</string>
+    <string name="dialog_new_archievement">¡LOGRO DESBLOQUEADO!</string>
+    <string name="dialog_new_highscore_and_archievement">¡NUEVO RÉCORD Y LOGRO!</string>
+    <string name="dialog_exit_game">¿Estás seguro de que deseas salir?</string>
+    <string name="click_to_continue">Toca el tablero para salir</string>
+    <string name="title_activity_help">Help</string>
+    <string name="help_title">AYUDA</string>
+    <string name="help_button">JUGAR</string>
+    <string name="help_checkbox">NO VOLVER A MOSTRAR</string>
+    <string name="help_howto">CÓMO JUGAR:\nToca el cuadrado que es de diferente color y avanza al siguiente nivel, pero cuidado ¡cada vez será más difícil!
+        \n\nConcéntrate y presta atención a los colores ya que a medida que superes niveles serán más y más parecidos entre sí.</string>
+    <string name="help_extras">PREMIOS:\nIntenta superar tu puntuación máxima y conseguir todos los logros posibles. Descubre qué mensaje esconde cada logro.
+        \n\nEncadena aciertos y aumenta el bonus de puntos o consigue premios como más vidas o más tiempo.
+        \n\nDIFICULTAD:
+        \nSi crees tener vista de lince y buscas un desafío mayor, prueba el modo difícil, actívalo desde el menú de configuración. Ajusta el brillo de tu pantalla al máximo para jugar en las mejores condiciones.
+        \n\n¡ACEPTA EL RETO!</string>
+    <string name="help_mode1_title">MODO PRÁCTICA</string>
+    <string name="help_mode1">Toca el cuadrado que es de diferente color y avanza al siguiente nivel, pero cuidado ¡cada vez será más difícil!
+        \n\nJuega a este modo sin tener que preocuparte de que se te acabe el tiempo. Aumenta el multiplicador del bonus y obtén vidas por superar varios niveles sin cometer errores en dificultad difícil.
+        \n\nIntenta conseguir todos los logros que esconde este modo y cuando estés preparado prueba el modo Contrarreloj.</string>
+    <string name="help_mode2_title">MODO CONTRARRELOJ</string>
+    <string name="help_mode2">Toca el cuadrado que es de diferente color y avanza al siguiente nivel, pero cuidado ¡cada vez será más difícil!
+        \n\nVigila el temporizador, ¡no dejes que llegue a cero!. Consigue tiempo extra avanzando niveles, gana puntos extra por no cometer fallos y vidas por superar varias pantallas sin cometer errores en dificultad difícil.
+        \n\nAlgunos logros están sólo al alcance de los mejores, veamos hasta dónde puedes llegar…</string>
+    <string name="archievements_header">LOGROS</string>
+    <string name="archievements_checked">CONSEGUIDO</string>
+    <string name="unsuccessful_game">No ha sido tu mejor partida.\n\n¡Inténtalo de nuevo!</string>
+    <string name="dialog_continue">Continuar</string>
+    <string name="dialog_share">¡Compartir!</string>
+    <string name="time">TIEMPO</string>
+    <string name="share_dialog_title">Compartir vía</string>
+    <string name="share_from_dialog_text_record_archievement_1">He conseguido un récord de</string>
+    <string name="share_from_dialog_text_record_archievement_2">puntos, y los siguientes logros: </string>
+    <string name="share_from_dialog_text_record_only_1">He conseguido un récord de</string>
+    <string name="share_from_dialog_text_record_only_2">puntos. </string>
+    <string name="share_from_dialog_text_archievement_only_1">He conseguido logros nuevos:</string>
+    <string name="share_from_dialog_tail">¡TE RETO! Consígue el juego aquí, es gratis.\n\nhttps://play.google.com/store/apps/details?id=com.creativefunapps.tileschallenge</string>
+    <string name="game_results_record">He conseguido un récord de</string>
+    <string name="game_results_points">puntos</string>
+    <string name="game_results_archievement">He conseguido nuevos logros:</string>
+    <string name="game_results_record_and_archievement">y nuevos logros:</string>
+    <string name="game_results_challenge">¡TE RETO!</string>
+    <string name="share_app_text">He probado el juego TILES CHALLENGE y me encanta. ¡Consíguelo aquí! Es gratis.\n\nhttps://play.google.com/store/apps/details?id=com.creativefunapps.tileschallenge</string>
+    <string name="share_app_via">Compartir vía</string>
+
+    <string name="archievements1_easy_level50">Nivel 50</string>
+    <string name="archievements1_easy_level50_desc">\"Dando los primeros pasos\"</string>
+    <string name="archievements1_easy_level100">Nivel 100</string>
+    <string name="archievements1_easy_level100_desc">\"No puedes parar ahora\"</string>
+    <string name="archievements1_easy_level150">Nivel 150</string>
+    <string name="archievements1_easy_level150_desc">\"En busca de la aventura\"</string>
+    <string name="archievements1_easy_100points">100.000 Puntos</string>
+    <string name="archievements1_easy_100points_desc">\"Caza tesoros\"</string>
+    <string name="archievements1_easy_chain">50 aciertos consecutivos</string>
+    <string name="archievements1_easy_chain_desc">\"¡No fallas una!\"</string>
+    <string name="archievements1_easy_big_chain">75 aciertos consecutivos</string>
+    <string name="archievements1_easy_big_chain_desc">\"Vista de lince\"</string>
+    <string name="archievements2_easy_time60">Acumula 60 segundos de tiempo</string>
+    <string name="archievements2_easy_time60_desc">\"Rápido como el viento\"</string>
+    <string name="archievements1_hard_level50">Nivel 50 *</string>
+    <string name="archievements1_hard_level50_desc">\"Parece fácil pero…\"</string>
+    <string name="archievements1_hard_level100">Nivel 100 *</string>
+    <string name="archievements1_hard_level100_desc">\"100 niveles son poco para tí\"</string>
+    <string name="archievements1_hard_level150">Nivel 150 *</string>
+    <string name="archievements1_hard_level150_desc">\"¡Estás a otro nivel!\"</string>
+    <string name="archievements1_hard_50points">50.000 Puntos *</string>
+    <string name="archievements1_hard_50points_desc">\"Jugador TOP\"</string>
+    <string name="archievements1_hard_10lives">Consigue 10 vidas *</string>
+    <string name="archievements1_hard_10lives_desc">\"Inmortal\"</string>
+    <string name="archievements1_hard_chain">25 aciertos consecutivos *</string>
+    <string name="archievements1_hard_chain_desc">\"Poco a poco sin fallar\"</string>
+    <string name="archievements1_hard_big_chain">50 aciertos consecutivos *</string>
+    <string name="archievements1_hard_big_chain_desc">\"Vista de lince y mucha precisión\"</string>
+    <string name="archievements2_hard_time60">Acumula 60 segundos de tiempo *</string>
+    <string name="archievements2_hard_time60_desc">\"Eterno\"</string>
+    <string name="archievements_all">Consigue todos los logros</string>
+    <string name="archievements_all_desc">\"¡MAESTRO de Tiles Challenge!\"</string>
+
+    <string-array name="archievements_array">
+        <item>@string/archievements1_easy_level50</item>
+        <item>@string/archievements1_easy_level100</item>
+        <item>@string/archievements1_easy_level150</item>
+        <item>@string/archievements1_easy_100points</item>
+        <item>@string/archievements1_easy_chain</item>
+        <item>@string/archievements1_easy_big_chain</item>
+        <item>@string/archievements2_easy_time60</item>
+        <item>@string/archievements1_hard_level50</item>
+        <item>@string/archievements1_hard_level100</item>
+        <item>@string/archievements1_hard_level150</item>
+        <item>@string/archievements1_hard_50points</item>
+        <item>@string/archievements1_hard_10lives</item>
+        <item>@string/archievements1_hard_chain</item>
+        <item>@string/archievements1_hard_big_chain</item>
+        <item>@string/archievements2_hard_time60</item>
+        <item>@string/archievements_all</item>
+    </string-array>
+
+    <string-array name="archievements_desc_array">
+        <item>@string/archievements1_easy_level50_desc</item>
+        <item>@string/archievements1_easy_level100_desc</item>
+        <item>@string/archievements1_easy_level150_desc</item>
+        <item>@string/archievements1_easy_100points_desc</item>
+        <item>@string/archievements1_easy_chain_desc</item>
+        <item>@string/archievements1_easy_big_chain_desc</item>
+        <item>@string/archievements2_easy_time60_desc</item>
+        <item>@string/archievements1_hard_level50_desc</item>
+        <item>@string/archievements1_hard_level100_desc</item>
+        <item>@string/archievements1_hard_level150_desc</item>
+        <item>@string/archievements1_hard_50points_desc</item>
+        <item>@string/archievements1_hard_10lives_desc</item>
+        <item>@string/archievements1_hard_chain_desc</item>
+        <item>@string/archievements1_hard_big_chain_desc</item>
+        <item>@string/archievements2_hard_time60_desc</item>
+        <item>@string/archievements_all_desc</item>
+    </string-array>
+
+</resources>

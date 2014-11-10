@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="preferencias_principal" >
+
+    <CheckBoxPreference
+        android:key="difficulty"
+        android:summary="@string/prefHard"
+        android:title="@string/prefHardTitle"
+        android:checked="false"
+        android:icon="@drawable/radioactive_32"
+
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit ="marquee_forever"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollHorizontally="true"
+        android:fadingEdge="horizontal"/>
+
+    <Preference
+        android:key="deleteScores"
+        android:summary="@string/prefDeleteScores"
+        android:title="@string/prefDeleteScoresTitle"
+        android:icon="@drawable/delete_24"
+
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit ="marquee_forever"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollHorizontally="true"
+        android:fadingEdge="horizontal"/>
+
+    <Preference
+        android:key="showHelp"
+        android:summary="@string/prefShowHelp"
+        android:title="@string/prefShowHelpTitle"
+        android:icon="@drawable/interrogation_24"
+
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit ="marquee_forever"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollHorizontally="true"
+        android:fadingEdge="horizontal"/>
+</PreferenceScreen>

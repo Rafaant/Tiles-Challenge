@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.creativefunapps.tileschallenge" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".SplashTitle"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Main"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_main" >
+        </activity>
+        <activity
+            android:name=".Game"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_game" >
+        </activity>
+        <activity
+            android:name=".Score"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_score" >
+        </activity>
+        <activity
+            android:name=".Archievement"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_score" >
+        </activity>
+        <activity
+            android:name=".Help"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_help" >
+        </activity>
+        <activity
+            android:name=".Preferences"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_preferences" >
+        </activity>
+    </application>
+
+</manifest>

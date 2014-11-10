@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Tiles Challenge</string>
+    <string name="app_author">Creative &amp; Fun APPS</string>
+    <string name="app_by">Rafa Navarro</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_main">Main</string>free play
+    <string name="card_back_title">text card back title</string>
+    <string name="card_back_description">text card back description</string>
+    <string name="description_image_1">text description image 1</string>
+    <string name="start">TAP TO START!</string>
+    <string name="title_activity_game">Game</string>
+    <string name="button1">PRACTICE</string>
+    <string name="play">PLAY</string>
+    <string name="button2">TIME TRIAL</string>
+    <string name="button3">MEMORY</string>
+    <string name="button4">OPTIONS</string>
+    <string name="points">POINTS</string>
+    <string name="level">LEVEL</string>
+    <string name="lives">LIVES</string>
+    <string name="life">life</string>
+    <string name="bonus">BONUS</string>
+    <string name="info">INFO</string>
+    <string name="menu_score">Scores / Archievements</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_comment">Rate this app</string>
+    <string name="menu_help">Help</string>
+    <string name="menu_config">Settings</string>
+    <string name="easy">Easy</string>
+    <string name="hard">Hard</string>
+    <string name="all">All</string>
+    <string name="score_score">Scores</string>
+    <string name="score_ranking">Ranking</string>
+    <string name="score_archievements">SEE ARCHIEVEMENTS</string>
+    <string name="score_archievements2">SEE SCORES</string>
+    <string name="title_activity_score">Score</string>
+    <string name="score_header">HIGH SCORES</string>
+    <string name="prefHard">Check for higher difficulty</string>
+    <string name="prefHardTitle">Hard difficulty</string>
+    <string name="prefDeleteScores">Tap to start from zero</string>
+    <string name="prefDeleteScoresTitle">Clear statistics</string>
+    <string name="prefShowHelp">Redisplay help at the beggining</string>
+    <string name="prefShowHelpTitle">Show help</string>
+    <string name="title_activity_preferences">Preferences</string>
+    <string name="preferences_dialog_scores">All the scores and achievements will be deleted.\nAre you sure?</string>
+    <string name="preferences_dialog_showhelp">Continue?</string>
+    <string name="preferences_dialog_accept">YES</string>
+    <string name="preferences_dialog_cancel">NO</string>
+    <string name="dialog_new_highscore">NEW PERSONAL RECORD!</string>
+    <string name="dialog_new_archievement">ARCHIEVEMENT UNLOCKED!</string>
+    <string name="dialog_new_highscore_and_archievement">NEW RECORD AND ACHIEVEMENT!</string>
+    <string name="dialog_exit_game">Are you sure you want to quit?</string>
+    <string name="click_to_continue">Touch the board to exit</string>
+    <string name="title_activity_help">Help</string>
+    <string name="help_title">HELP</string>
+    <string name="help_button">PLAY</string>
+    <string name="help_checkbox">DON\'T SHOW AGAIN</string>
+    <string name="help_howto">HOW TO PLAY:\nTap the square that is a different colour and advance to the next level, but beware it\'ll be increasingly difficult!
+        \n\nConcentrate and pay attention to the colors because as you complete levels they will be more and more alike.</string>
+    <string name="help_extras">AWARDS:\nTry to beat your high score and get all the achievements possible. Discover what message hides behind each achievement.
+        \n\nChain hits and increase the bonus points or get awards like more lives or longer timer.
+        \n\nDIFFICULTY:
+        \nIf you think you have sharp eyes and are looking for a bigger challenge, try the hard mode, activate it from the settings menu. Adjust the brightness of your screen to the maximum to play in the best conditions.
+        \n\nACCEPT THE CHALLENGE!</string>
+    <string name="help_mode1_title">PRACTICE MODE</string>
+    <string name="help_mode1">Tap the square that is a different colour and advance to the next level, but beware it\'ll be increasingly difficult!
+        \n\nPlay this way without having to worry that you run out of time. Increase the bonus multiplier and get lives by overcoming multiple levels without making mistakes on hard difficulty.
+        \n\nTry to get all achievements hidden in this mode and when you are ready try the Time Trial mode.</string>
+    <string name="help_mode2_title">TIME TRIAL MODE</string>
+    <string name="help_mode2">Tap the square that is a different colour and advance to the next level, but beware it\'ll be increasingly difficult!
+        \n\nWatch the timer, don\'t let it reach zero!. Get more time to advance levels, earn extra points for not making mistakes and lives by overcoming multiple levels without making mistakes on hard difficulty.
+        \n\nSome achievements are only available to the top players, let\'s see how far you can get…</string>
+    <string name="archievements_header">ARCHIEVEMENTS</string>
+    <string name="archievements_checked">OBTAINED</string>
+    <string name="unsuccessful_game">That wasn\'t your best game.\n\nTry again!</string>
+    <string name="dialog_continue">Continue</string>
+    <string name="dialog_share">Share!</string>
+    <string name="time">TIME</string>
+    <string name="share_dialog_title">Share via</string>
+    <string name="share_from_dialog_text_record_archievement_1">I\'ve got a record of</string>
+    <string name="share_from_dialog_text_record_archievement_2">points, and the following archievements: </string>
+    <string name="share_from_dialog_text_record_only_1">I\'ve got a record of</string>
+    <string name="share_from_dialog_text_record_only_2">points. </string>
+    <string name="share_from_dialog_text_archievement_only_1">I\'ve got new archievements:</string>
+    <string name="share_from_dialog_tail">I CHALLENGE YOU! Get the game here, it\'s free.\n\nhttps://play.google.com/store/apps/details?id=com.creativefunapps.tileschallenge</string>
+    <string name="game_results_record">I\'ve got a record of</string>
+    <string name="game_results_points">points</string>
+    <string name="game_results_archievement">I\'ve got new archievements:</string>
+    <string name="game_results_record_and_archievement">and new archievements:</string>
+    <string name="game_results_challenge">I CHALLENGE YOU!</string>
+    <string name="share_app_text">I\'ve tried the TILES CHALLENGE game app and I loved it. Get it here! It\'s free.\n\nhttps://play.google.com/store/apps/details?id=com.creativefunapps.tileschallenge</string>
+    <string name="share_app_via">Share via</string>
+
+    <string name="archievements1_easy_level50">Level 50</string>
+    <string name="archievements1_easy_level50_desc">\"Taking the first steps\"</string>
+    <string name="archievements1_easy_level100">Level 100</string>
+    <string name="archievements1_easy_level100_desc">\"You can\'t stop now\"</string>
+    <string name="archievements1_easy_level150">Level 150</string>
+    <string name="archievements1_easy_level150_desc">\"Searching for adventure\"</string>
+    <string name="archievements1_easy_100points">100.000 Puntos</string>
+    <string name="archievements1_easy_100points_desc">\"Treasure hunter\"</string>
+    <string name="archievements1_easy_chain">50 consecutive hits</string>
+    <string name="archievements1_easy_chain_desc">\"Lynx\'s eyes\"</string>
+    <string name="archievements1_easy_big_chain">75 consecutive hits</string>
+    <string name="archievements1_easy_big_chain_desc">\"Faultless!\"</string>
+    <string name="archievements2_easy_time60">Earn 60 seconds of time</string>
+    <string name="archievements2_easy_time60_desc">\"Fast as the wind\"</string>
+    <string name="archievements1_hard_level50">Level 50 *</string>
+    <string name="archievements1_hard_level50_desc">\"Seems easy but…\"</string>
+    <string name="archievements1_hard_level100">Level 100 *</string>
+    <string name="archievements1_hard_level100_desc">\"100 levels are little for you\"</string>
+    <string name="archievements1_hard_level150">Level 150 *</string>
+    <string name="archievements1_hard_level150_desc">\"You\'re on higher level!\"</string>
+    <string name="archievements1_hard_50points">50.000 Points *</string>
+    <string name="archievements1_hard_50points_desc">\"Top player\"</string>
+    <string name="archievements1_hard_10lives">Get 10 lives *</string>
+    <string name="archievements1_hard_10lives_desc">\"Immortal\"</string>
+    <string name="archievements1_hard_chain">25 consecutive hits *</string>
+    <string name="archievements1_hard_chain_desc">\"Little by little without fail\"</string>
+    <string name="archievements1_hard_big_chain">50 consecutive hits *</string>
+    <string name="archievements1_hard_big_chain_desc">\"Sharp eyes\"</string>
+    <string name="archievements2_hard_time60">Earn 60 seconds of time *</string>
+    <string name="archievements2_hard_time60_desc">\"Everlasting\"</string>
+    <string name="archievements_all">Get all the archievements</string>
+    <string name="archievements_all_desc">\"Tiles Challenge MASTER!\"</string>
+
+    <string-array name="archievements_array">
+        <item>@string/archievements1_easy_level50</item>
+        <item>@string/archievements1_easy_level100</item>
+        <item>@string/archievements1_easy_level150</item>
+        <item>@string/archievements1_easy_100points</item>
+        <item>@string/archievements1_easy_chain</item>
+        <item>@string/archievements1_easy_big_chain</item>
+        <item>@string/archievements2_easy_time60</item>
+        <item>@string/archievements1_hard_level50</item>
+        <item>@string/archievements1_hard_level100</item>
+        <item>@string/archievements1_hard_level150</item>
+        <item>@string/archievements1_hard_50points</item>
+        <item>@string/archievements1_hard_10lives</item>
+        <item>@string/archievements1_hard_chain</item>
+        <item>@string/archievements1_hard_big_chain</item>
+        <item>@string/archievements2_hard_time60</item>
+        <item>@string/archievements_all</item>
+    </string-array>
+
+    <string-array name="archievements_desc_array">
+        <item>@string/archievements1_easy_level50_desc</item>
+        <item>@string/archievements1_easy_level100_desc</item>
+        <item>@string/archievements1_easy_level150_desc</item>
+        <item>@string/archievements1_easy_100points_desc</item>
+        <item>@string/archievements1_easy_chain_desc</item>
+        <item>@string/archievements1_easy_big_chain_desc</item>
+        <item>@string/archievements2_easy_time60_desc</item>
+        <item>@string/archievements1_hard_level50_desc</item>
+        <item>@string/archievements1_hard_level100_desc</item>
+        <item>@string/archievements1_hard_level150_desc</item>
+        <item>@string/archievements1_hard_50points_desc</item>
+        <item>@string/archievements1_hard_10lives_desc</item>
+        <item>@string/archievements1_hard_chain_desc</item>
+        <item>@string/archievements1_hard_big_chain_desc</item>
+        <item>@string/archievements2_hard_time60_desc</item>
+        <item>@string/archievements_all_desc</item>
+    </string-array>
+    
+</resources>

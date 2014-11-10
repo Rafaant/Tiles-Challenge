@@ -1,0 +1,46 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/containerFullScreen" >
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:adjustViewBounds="true"
+        android:dither="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background_grey"
+        android:tileMode="disabled"
+        android:visibility="visible" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center"
+            android:id="@+id/containerTopBar"
+            android:layout_alignParentTop="true"
+            android:layout_alignBottom="@+id/tvTime"></FrameLayout>
+
+        <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/containerGameBoard"
+            android:layout_centerInParent="true"
+            android:background="@android:color/white"></FrameLayout>
+
+        <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/containerBottomBar"
+        android:layout_gravity="bottom|center"
+            android:layout_alignParentBottom="true"></FrameLayout>
+    </RelativeLayout>
+
+</FrameLayout>

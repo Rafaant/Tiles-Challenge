@@ -1,0 +1,38 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        config {
+            keyAlias 'tileschallenge'
+            keyPassword '131285ranc'
+            storeFile file('C:/Users/Rafa/AndroidStudioProjects/mikeystore.jks')
+            storePassword '131285ranc'
+        }
+    }
+    compileSdkVersion 20
+    buildToolsVersion '20.0.0'
+    defaultConfig {
+        applicationId 'com.creativefunapps.tileschallenge'
+        minSdkVersion 14
+        targetSdkVersion 20
+        versionCode 5
+        versionName '1.0.4'
+        signingConfig signingConfigs.config
+    }
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.config
+        }
+    }
+    productFlavors {
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:support-v4:20.0.0'
+}
