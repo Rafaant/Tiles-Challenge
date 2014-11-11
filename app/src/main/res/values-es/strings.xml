@@ -164,4 +164,6 @@
         <item>@string/archievements_all_desc</item>
     </string-array>
 
+    <string name="title_activity_advertisement">Publicidad</string>
+
 </resources>

@@ -1,7 +1,5 @@
 package com.creativefunapps.tileschallenge;
 
-
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -19,11 +17,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
 
 import java.util.Calendar;
 import java.util.Vector;
@@ -46,6 +45,8 @@ public class Main extends PortraitActivity {
     public final int RECORD_ONLY = 2;
     public final int ARCHIEVEMENT_ONLY = 3;
     public static int game_results_type = 0;
+    public final static int GAME = 1234;
+    public final static int SHARE_RESULTS = 5678;
 
     /**
      * Whether or not we're showing the back of the card (otherwise showing the front).
@@ -57,6 +58,10 @@ public class Main extends PortraitActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //GOOGLE ANALYTICS: Get a Tracker (should auto-report)
+        //((MyApplication) getApplication()).getTracker(MyApplication.TrackerName.APP_TRACKER);
+
 
         score_warehouse = new ScoreWarehouseSQLite(this);
         ArchievementWarehouseSQLite.ARCHIEVEMENTS_STRINGS = getResources().getStringArray(R.array.archievements_array);
@@ -121,7 +126,7 @@ public class Main extends PortraitActivity {
         super.onActivityResult(requestCode, resultCode, data);
         Log.v("myAPP", "ON ACTIVITY RESULT - requestCode - resultCode:" + String.valueOf(requestCode) + " - " + String.valueOf(resultCode) + " - RESULT_OK: " + RESULT_OK);
 
-        if (requestCode == 1234 & resultCode == RESULT_OK & data != null) {
+        if (requestCode == GAME & resultCode == RESULT_OK & data != null) {
             mode = data.getExtras().getInt("mode");
             points = data.getExtras().getInt("score");
             level = data.getExtras().getInt("level");
@@ -145,7 +150,7 @@ public class Main extends PortraitActivity {
                     .beginTransaction()
                     .add(R.id.container, new GameSummaryFragment())
                     .commit();*/
-        }else if(requestCode == 5678){
+        }else if(requestCode == SHARE_RESULTS){
             launchRanking();
         }else {
             Log.i("myAPP", "Se ha salido abruptamente, pulsando la tecla volver.");
@@ -386,7 +391,7 @@ public class Main extends PortraitActivity {
             }
             sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, str);
             //startActivity(Intent.createChooser(sharingIntent, getString(R.string.share_dialog_title)));
-            startActivityForResult(Intent.createChooser(sharingIntent, getString(R.string.share_dialog_title)), 5678);
+            startActivityForResult(Intent.createChooser(sharingIntent, getString(R.string.share_dialog_title)), SHARE_RESULTS);
         }catch (Exception E){
             Log.v("myAPP", "Error o Intent.ACTION_SEND no disponible");
         }
@@ -513,7 +518,7 @@ public class Main extends PortraitActivity {
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                 sharingIntent.setType("image/jpeg");
                 sharingIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file:///sdcard/temporary_file.jpg"));
-                ((Activity)view.getContext()).startActivityForResult(Intent.createChooser(sharingIntent, view.getContext().getString(R.string.share_dialog_title)), 5678);
+                ((Activity)view.getContext()).startActivityForResult(Intent.createChooser(sharingIntent, view.getContext().getString(R.string.share_dialog_title)), SHARE_RESULTS);
             }catch (Exception E){
                 Log.v("myAPP", "Error o Intent.ACTION_SEND no disponible");
             }
@@ -550,7 +555,7 @@ public class Main extends PortraitActivity {
                     ((Activity) view.getContext()).openOptionsMenu();
                     break;
             }
-            ((Activity)view.getContext()).startActivityForResult(i, 1234);
+            ((Activity)view.getContext()).startActivityForResult(i, GAME);
         }
     };
 
@@ -577,5 +582,20 @@ public class Main extends PortraitActivity {
 
             return inputView;
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //Get an Analytics tracker to report app starts & uncaught exceptions etc.
+        GoogleAnalytics.getInstance(this).reportActivityStart(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        //Stop the analytics tracking
+        GoogleAnalytics.getInstance(this).reportActivityStop(this);
+
     }
 }
