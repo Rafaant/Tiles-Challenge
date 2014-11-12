@@ -19,28 +19,43 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
-        <FrameLayout
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/banner_bottom">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center"
+                android:id="@+id/containerTopBar"
+                android:layout_alignParentTop="true"></FrameLayout>
+
+            <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/containerGameBoard"
+                android:layout_centerInParent="true"
+                android:background="@android:color/white"></FrameLayout>
+
+            <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="top|center"
-            android:id="@+id/containerTopBar"
-            android:layout_alignParentTop="true"
-            android:layout_alignBottom="@+id/tvTime"></FrameLayout>
+            android:id="@+id/containerBottomBar"
+            android:layout_gravity="bottom|center"
+                android:layout_alignParentBottom="true"></FrameLayout>
 
-        <FrameLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:id="@+id/containerGameBoard"
-            android:layout_centerInParent="true"
-            android:background="@android:color/white"></FrameLayout>
+        </RelativeLayout>
 
-        <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/containerBottomBar"
-        android:layout_gravity="bottom|center"
-            android:layout_alignParentBottom="true"></FrameLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/banner_bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"></LinearLayout>
     </RelativeLayout>
 
 </FrameLayout>

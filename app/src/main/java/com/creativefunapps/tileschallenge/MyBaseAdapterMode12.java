@@ -31,8 +31,8 @@ public class MyBaseAdapterMode12 extends BaseAdapter {
     public static int DEVIATION_MAX = 25; //inicial. 50 para forma 1, 20 para forma 2
     public static int DEVIATION_MIN;      //         15 para forma 1, 10 para forma 2
     public static int DECREASE_EACH_LEVEL;
-    private static final int HARD = 3;
-    private static final int EASY = 10;
+    private static final int HARD = 5;
+    private static final int EASY = 13;
     private static int deviation = DEVIATION_MAX;
     private boolean hard;
     View gridView;
@@ -67,13 +67,13 @@ public class MyBaseAdapterMode12 extends BaseAdapter {
             }else{
                 if(!hard){
                     DEVIATION_MIN = EASY;
-                    DECREASE_EACH_LEVEL = 5;
+                    DECREASE_EACH_LEVEL = 10;
                 }else{
                     DEVIATION_MIN = HARD;
                     DECREASE_EACH_LEVEL = 5;
                 }
                 //preparar desviación del color en caso de jugar en modo dificil, leer del menu de config.
-                DEVIATION_MIN = (hard) ? HARD : EASY;
+                //DEVIATION_MIN = (hard) ? HARD : EASY;
                 Log.v("myAPP", "hard: " + hard + " - DEVIATION_MIN: " + DEVIATION_MIN + " - deviation:" + deviation + " - Game.level%10:" + Game.level%10 + " deviation - Game.level%10:" + (deviation - Game.level%10));
                 //deviation = (deviation - Game.level/1 > DEVIATION_MIN) ? ( (Game.level%Game.level==0) ? deviation - Game.level/1 : deviation ) : DEVIATION_MIN;
 

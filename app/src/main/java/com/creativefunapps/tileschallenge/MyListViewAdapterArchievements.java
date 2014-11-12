@@ -33,6 +33,12 @@ public class MyListViewAdapterArchievements extends BaseAdapter {
         if(position==0 || position==8 || position==17){
             view = inflater.inflate(R.layout.archievement_separator, null, true);
             ((TextView) view.findViewById(R.id.tvArchievementsMode)).setText(lista.elementAt(position).getName().toUpperCase());
+            if(position==0){
+                ((TextView) view.findViewById(R.id.tvArchievementsMode)).setTextColor(actividad.getResources().getColor(android.R.color.holo_blue_dark));
+            }
+            if(position==8){
+                ((TextView) view.findViewById(R.id.tvArchievementsMode)).setTextColor(actividad.getResources().getColor(android.R.color.holo_red_dark));
+            }
         }else{
             view = inflater.inflate(R.layout.archievement_element, null, true);
             textView = (TextView) view.findViewById(R.id.tvArchievementsMode);

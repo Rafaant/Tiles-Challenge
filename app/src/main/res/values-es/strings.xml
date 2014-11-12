@@ -30,6 +30,7 @@
     <string name="menu_config">Configuración</string>
     <string name="easy">Fácil</string>
     <string name="hard">Difícil</string>
+    <string name="difficulty_selection">Elige dificultad</string>
     <string name="all">Todos</string>
     <string name="score_score">Puntuaciones</string>
     <string name="score_ranking">Ranking</string>
@@ -51,18 +52,19 @@
     <string name="dialog_new_highscore">¡NUEVO RÉCORD PERSONAL!</string>
     <string name="dialog_new_archievement">¡LOGRO DESBLOQUEADO!</string>
     <string name="dialog_new_highscore_and_archievement">¡NUEVO RÉCORD Y LOGRO!</string>
+    <string name="pause">PAUSA</string>
     <string name="dialog_exit_game">¿Estás seguro de que deseas salir?</string>
-    <string name="click_to_continue">Toca el tablero para salir</string>
+    <string name="click_to_continue">Toca otra vez para salir</string>
     <string name="title_activity_help">Help</string>
     <string name="help_title">AYUDA</string>
-    <string name="help_button">JUGAR</string>
+    <string name="help_button">TOCA AQUÍ PARA JUGAR</string>
     <string name="help_checkbox">NO VOLVER A MOSTRAR</string>
     <string name="help_howto">CÓMO JUGAR:\nToca el cuadrado que es de diferente color y avanza al siguiente nivel, pero cuidado ¡cada vez será más difícil!
         \n\nConcéntrate y presta atención a los colores ya que a medida que superes niveles serán más y más parecidos entre sí.</string>
     <string name="help_extras">PREMIOS:\nIntenta superar tu puntuación máxima y conseguir todos los logros posibles. Descubre qué mensaje esconde cada logro.
         \n\nEncadena aciertos y aumenta el bonus de puntos o consigue premios como más vidas o más tiempo.
         \n\nDIFICULTAD:
-        \nSi crees tener vista de lince y buscas un desafío mayor, prueba el modo difícil, actívalo desde el menú de configuración. Ajusta el brillo de tu pantalla al máximo para jugar en las mejores condiciones.
+        \nSi crees tener vista de lince y buscas un desafío mayor prueba el modo difícil. Ajusta el brillo de tu pantalla al máximo para jugar en las mejores condiciones.
         \n\n¡ACEPTA EL RETO!</string>
     <string name="help_mode1_title">MODO PRÁCTICA</string>
     <string name="help_mode1">Toca el cuadrado que es de diferente color y avanza al siguiente nivel, pero cuidado ¡cada vez será más difícil!
@@ -72,6 +74,7 @@
     <string name="help_mode2">Toca el cuadrado que es de diferente color y avanza al siguiente nivel, pero cuidado ¡cada vez será más difícil!
         \n\nVigila el temporizador, ¡no dejes que llegue a cero!. Consigue tiempo extra avanzando niveles, gana puntos extra por no cometer fallos y vidas por superar varias pantallas sin cometer errores en dificultad difícil.
         \n\nAlgunos logros están sólo al alcance de los mejores, veamos hasta dónde puedes llegar…</string>
+    <string name="help_hard">\n\nEn dificultad difícil puede haber uno o más cuadrados de diferente color. Descúbrelos todos para pasar al siguiente nivel.</string>
     <string name="archievements_header">LOGROS</string>
     <string name="archievements_checked">CONSEGUIDO</string>
     <string name="unsuccessful_game">No ha sido tu mejor partida.\n\n¡Inténtalo de nuevo!</string>
@@ -92,6 +95,7 @@
     <string name="game_results_challenge">¡TE RETO!</string>
     <string name="share_app_text">He probado el juego TILES CHALLENGE y me encanta. ¡Consíguelo aquí! Es gratis.\n\nhttps://play.google.com/store/apps/details?id=com.creativefunapps.tileschallenge</string>
     <string name="share_app_via">Compartir vía</string>
+    <string name="thanks_for_share">¡Gracias por tu comentario!</string>
 
     <string name="archievements1_easy_level50">Nivel 50</string>
     <string name="archievements1_easy_level50_desc">\"Dando los primeros pasos\"</string>

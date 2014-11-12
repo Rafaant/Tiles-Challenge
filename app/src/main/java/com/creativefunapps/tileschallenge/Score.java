@@ -2,9 +2,7 @@ package com.creativefunapps.tileschallenge;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,7 +86,7 @@ public class Score extends PortraitActivity {
             list.add(new ScoreRepresentationClass(inputView.getContext(), Main.score_warehouse, 2));
             //list.add(new ScoreRepresentationClass(inputView.getContext(), Main.score_warehouse, 3));
 
-            layout.setAdapter(new MyListViewAdapter((Activity) inputView.getContext(), list));
+            layout.setAdapter(new MyListViewAdapterScores((Activity) inputView.getContext(), list));
             return inputView;
         }
         public void refresh(){

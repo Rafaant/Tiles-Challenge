@@ -3,7 +3,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:key="preferencias_principal" >
 
-    <CheckBoxPreference
+    <!--<CheckBoxPreference
         android:key="difficulty"
         android:summary="@string/prefHard"
         android:title="@string/prefHardTitle"
@@ -16,7 +16,7 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:scrollHorizontally="true"
-        android:fadingEdge="horizontal"/>
+        android:fadingEdge="horizontal"/>-->
 
     <Preference
         android:key="deleteScores"
@@ -32,7 +32,7 @@
         android:scrollHorizontally="true"
         android:fadingEdge="horizontal"/>
 
-    <Preference
+    <!--<Preference
         android:key="showHelp"
         android:summary="@string/prefShowHelp"
         android:title="@string/prefShowHelpTitle"
@@ -44,5 +44,5 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:scrollHorizontally="true"
-        android:fadingEdge="horizontal"/>
+        android:fadingEdge="horizontal"/>-->
 </PreferenceScreen>

@@ -47,7 +47,7 @@ public class Preferences extends PreferenceActivity {
                 return true;
             }
         });
-        button = (Preference)findPreference("showHelp");
+        /*button = (Preference)findPreference("showHelp");
         button.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(final Preference preference) {
@@ -72,6 +72,6 @@ public class Preferences extends PreferenceActivity {
                 builder.show();
                 return true;
             }
-        });
+        });*/
     }
 }

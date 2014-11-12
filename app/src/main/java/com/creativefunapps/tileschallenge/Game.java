@@ -17,12 +17,18 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.FrameLayout;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 
 
@@ -58,6 +64,7 @@ public class Game extends PortraitActivity {
     public static final int TIME_ADDED_EASY = 5000;
     public static final int TIME_ADDED_HARD = 15000;
     public static int mode;
+    public static final int SHOW_INTERSTITIAL_EACH_X_LEVELS_MODE_1 = 5;
 
     private static MyBaseAdapterMode12 MyAdapter;
     public static GridView layout;
@@ -84,9 +91,6 @@ public class Game extends PortraitActivity {
         /*Intent j = new Intent(this, Advertisement.class);
         startActivity(j);*/
 
-        //lanzar publicidad
-        show_ad();
-
         tiles=STARTING_TILES;
         level=STARTING_LEVEL;
         lives=LIVES;
@@ -102,6 +106,10 @@ public class Game extends PortraitActivity {
         setContentView(R.layout.activity_game);
         Intent i = getIntent();
         mode = i.getIntExtra("mode", 1); //en caso de error -> modo normal 1
+
+        //lanzar publicidad
+        show_ad();
+        show_banner_ad();
 
         //layout inferior comun a todos
         if (savedInstanceState == null) {
@@ -179,9 +187,14 @@ public class Game extends PortraitActivity {
                     ((TextView)inputView.findViewById(R.id.help)).setText(inputView.getResources().getString(R.string.help_mode2));
                     break;
             }
-            cb = (CheckBox) inputView.findViewById(R.id.help_checkBox);
-            Button button = (Button) inputView.findViewById(R.id.help_button);
-            button.setOnClickListener(close_help);
+            //cb = (CheckBox) inputView.findViewById(R.id.help_checkBox);
+            //Button button = (Button) inputView.findViewById(R.id.help_button);
+
+            /*if(Main.hard){
+                ((TextView)inputView.findViewById(R.id.help)).append(inputView.getResources().getString(R.string.help_hard));
+            }*/
+            RelativeLayout touch = (RelativeLayout) inputView.findViewById(R.id.help_touch);
+            touch.setOnClickListener(close_help);
             return inputView;
         }
 
@@ -192,14 +205,14 @@ public class Game extends PortraitActivity {
                 ((Activity)view.getContext()).getFragmentManager().beginTransaction().setCustomAnimations(
                         R.anim.fade_out_help, R.anim.fade_out_help)
                         .remove(help_fragment).commit();
-                if(cb.isChecked()){
+                /*if(cb.isChecked()){
                     if(mode==1){
                         Main.show_help_mode1=false;
                     }
                     if(mode==2){
                         Main.show_help_mode2=false;
                     }
-                }
+                }*/
             }
         };
     }
@@ -258,6 +271,9 @@ public class Game extends PortraitActivity {
             inputView = inflater.inflate(R.layout.top_bar_mode1, container, false);
             text = (TextView) inputView.findViewById(R.id.level);
             text.setText(""+level);
+            text = (TextView) inputView.findViewById(R.id.topBarMessage);
+            text.setText((Main.hard==true)?getResources().getString(R.string.hard)+" ":getResources().getString(R.string.easy)+" "); //espacios añadidos porque al ser italic se come un trozo de la ultima letra
+            text.setTextColor((Main.hard == true) ? getResources().getColor(android.R.color.holo_red_dark) : getResources().getColor(android.R.color.holo_blue_dark));
             text = (TextView) inputView.findViewById(R.id.lives);
             text.setText(String.valueOf(lives));
             return inputView;
@@ -346,6 +362,11 @@ public class Game extends PortraitActivity {
     public void testCorrect(View v){
         switch(mode){
             case 1:
+                /*if(level%SHOW_INTERSTITIAL_EACH_X_LEVELS_MODE_1==0){//mostrar publicidad cada x niveles en modo práctica
+                    show_ad();
+                }*/
+                //la primera vez que se ejecuta ya podemos poner start = false para que el algoritmo de deviation del color funcione,
+                start = false;
                 if(lives>=1) {
                     if (Integer.parseInt(String.valueOf(v.getTag())) == MyAdapter.getDifferentIndex()) {//acierto
                         //Toast.makeText(getBaseContext(), "CORRECTO", Toast.LENGTH_SHORT).show();
@@ -552,8 +573,8 @@ public class Game extends PortraitActivity {
 
     public void disableClicks(){ //y desactivar onclick
         TextView tv = (TextView) findViewById(R.id.topBarMessage);
-        //tv.setText(getString(R.string.click_to_continue));
-        //tv.setTextColor(Color.WHITE);
+        tv.setText(getString(R.string.click_to_continue)+" "); //espacio añadido porque al ser italic se come un trozo de la ultima letra
+        tv.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
         tv.setVisibility(View.VISIBLE);
         for(int i=0; i<MyAdapter.getCount(); i++){
             MyAdapter.getItem(i).setClickable(true);
@@ -573,6 +594,7 @@ public class Game extends PortraitActivity {
         if(timer!=null) timer.pause();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
+        builder.setTitle(getString(R.string.pause));
         builder.setMessage(getString(R.string.dialog_exit_game));
         builder.setPositiveButton(getString(R.string.preferences_dialog_accept), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
@@ -616,7 +638,7 @@ public class Game extends PortraitActivity {
     private static final String LOG_TAG = "Advertisement";
 
     /** Your ad unit id. Replace with your actual ad unit id. */
-    private static final String AD_UNIT_ID = "ca-app-pub-9128082053165311/3395872781";
+    private static final String INTERSTITIAL_AD_UNIT_ID = "ca-app-pub-9128082053165311/3395872781";
 
     /** The interstitial ad. */
     private InterstitialAd interstitialAd;
@@ -624,7 +646,7 @@ public class Game extends PortraitActivity {
     public void show_ad(){
         // Create an ad.
         interstitialAd = new InterstitialAd(this);
-        interstitialAd.setAdUnitId(AD_UNIT_ID);
+        interstitialAd.setAdUnitId(INTERSTITIAL_AD_UNIT_ID);
 
         // Check the logcat output for your hashed device ID to get test ads on a physical device.
         // ELIMINAR CUANDO YA FUNCIONE
@@ -690,5 +712,42 @@ public class Game extends PortraitActivity {
                 break;
         }
         return errorReason;
+    }
+
+    private AdView adView;
+    private static final String BANNER_AD_UNIT_ID = "ca-app-pub-9128082053165311/9632379583";
+
+    public void show_banner_ad(){
+        adView = new AdView(this);
+        adView.setAdUnitId(BANNER_AD_UNIT_ID);
+        adView.setAdSize(AdSize.BANNER);
+
+        LinearLayout l = (LinearLayout)findViewById(R.id.banner_bottom);
+        l.addView(adView);
+
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice("ABB18ACF9860B7B99B386733FDF7FF18")
+                .build();
+
+        adView.loadAd(adRequest);
+    }
+
+    @Override
+    public void onPause() {
+        adView.pause();
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        adView.resume();
+    }
+
+    @Override
+    public void onDestroy() {
+        adView.destroy();
+        super.onDestroy();
     }
 }

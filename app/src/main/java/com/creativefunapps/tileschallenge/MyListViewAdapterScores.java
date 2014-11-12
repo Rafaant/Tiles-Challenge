@@ -10,13 +10,13 @@ import android.widget.TextView;
 
 import java.util.Vector;
 
-public class MyListViewAdapter extends BaseAdapter {
+public class MyListViewAdapterScores extends BaseAdapter {
 
     private final Activity actividad;
     private final Vector<ScoreRepresentationClass> lista;
     private TextView textView;
 
-    public MyListViewAdapter(Activity actividad, Vector<ScoreRepresentationClass> lista) {
+    public MyListViewAdapterScores(Activity actividad, Vector<ScoreRepresentationClass> lista) {
         super();
         this.actividad = actividad;
         this.lista = lista;

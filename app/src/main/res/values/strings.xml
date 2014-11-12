@@ -7,7 +7,7 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_main">Main</string>
-free play    <string name="card_back_title">text card back title</string>
+    <string name="card_back_title">text card back title</string>
     <string name="card_back_description">text card back description</string>
     <string name="description_image_1">text description image 1</string>
     <string name="start">TAP TO START!</string>
@@ -30,6 +30,7 @@ free play    <string name="card_back_title">text card back title</string>
     <string name="menu_config">Settings</string>
     <string name="easy">Easy</string>
     <string name="hard">Hard</string>
+    <string name="difficulty_selection">Select difficulty</string>
     <string name="all">All</string>
     <string name="score_score">Scores</string>
     <string name="score_ranking">Ranking</string>
@@ -51,18 +52,19 @@ free play    <string name="card_back_title">text card back title</string>
     <string name="dialog_new_highscore">NEW PERSONAL RECORD!</string>
     <string name="dialog_new_archievement">ARCHIEVEMENT UNLOCKED!</string>
     <string name="dialog_new_highscore_and_archievement">NEW RECORD AND ACHIEVEMENT!</string>
+    <string name="pause">PAUSED</string>
     <string name="dialog_exit_game">Are you sure you want to quit?</string>
-    <string name="click_to_continue">Touch the board to exit</string>
+    <string name="click_to_continue">Tap again to exit</string>
     <string name="title_activity_help">Help</string>
     <string name="help_title">HELP</string>
-    <string name="help_button">PLAY</string>
+    <string name="help_button">TAP HERE TO PLAY</string>
     <string name="help_checkbox">DON\'T SHOW AGAIN</string>
     <string name="help_howto">HOW TO PLAY:\nTap the square that is a different colour and advance to the next level, but beware it\'ll be increasingly difficult!
         \n\nConcentrate and pay attention to the colors because as you complete levels they will be more and more alike.</string>
     <string name="help_extras">AWARDS:\nTry to beat your high score and get all the achievements possible. Discover what message hides behind each achievement.
         \n\nChain hits and increase the bonus points or get awards like more lives or longer timer.
         \n\nDIFFICULTY:
-        \nIf you think you have sharp eyes and are looking for a bigger challenge, try the hard mode, activate it from the settings menu. Adjust the brightness of your screen to the maximum to play in the best conditions.
+        \nIf you think you have sharp eyes and are looking for a bigger challenge try the hard difficulty. Adjust the brightness of your screen to the maximum to play in the best conditions.
         \n\nACCEPT THE CHALLENGE!</string>
     <string name="help_mode1_title">PRACTICE MODE</string>
     <string name="help_mode1">Tap the square that is a different colour and advance to the next level, but beware it\'ll be increasingly difficult!
@@ -70,8 +72,9 @@ free play    <string name="card_back_title">text card back title</string>
         \n\nTry to get all achievements hidden in this mode and when you are ready try the Time Trial mode.</string>
     <string name="help_mode2_title">TIME TRIAL MODE</string>
     <string name="help_mode2">Tap the square that is a different colour and advance to the next level, but beware it\'ll be increasingly difficult!
-        \n\nWatch the timer, don\'t let it reach zero!. Get more time to advance levels, earn extra points for not making mistakes and lives by overcoming multiple levels without making mistakes on hard difficulty.
+        \n\nWatch the timer, don\'t let it reach zero!. Gain more time to advance levels, earn extra points for not making mistakes and lives by overcoming multiple levels without making mistakes on hard difficulty.
         \n\nSome achievements are only available to the top players, let\'s see how far you can get…</string>
+    <string name="help_hard">\n\nIn hard difficulty it may be more than one square to be touch. Get them all to go to the next level.</string>
     <string name="archievements_header">ARCHIEVEMENTS</string>
     <string name="archievements_checked">OBTAINED</string>
     <string name="unsuccessful_game">That wasn\'t your best game.\n\nTry again!</string>
@@ -90,8 +93,10 @@ free play    <string name="card_back_title">text card back title</string>
     <string name="game_results_archievement">I\'ve got new archievements:</string>
     <string name="game_results_record_and_archievement">and new archievements:</string>
     <string name="game_results_challenge">I CHALLENGE YOU!</string>
-    <string name="share_app_text">I\'ve tried the TILES CHALLENGE game app and I loved it. Get it here! It\'s free.\n\nhttps://play.google.com/store/apps/details?id=com.creativefunapps.tileschallenge</string>
+    <string name="share_app_text">I\'ve played the TILES CHALLENGE game app and I love it. Get it here! It\'s free.\n\nhttps://play.google.com/store/apps/details?id=com.creativefunapps.tileschallenge</string>
     <string name="share_app_via">Share via</string>
+    <string name="thanks_for_share">Thanks for your comment!</string>
+
     <string name="archievements1_easy_level50">Level 50</string>
     <string name="archievements1_easy_level50_desc">\"Taking the first steps\"</string>
     <string name="archievements1_easy_level100">Level 100</string>

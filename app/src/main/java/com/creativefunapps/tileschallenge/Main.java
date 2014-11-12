@@ -47,6 +47,7 @@ public class Main extends PortraitActivity {
     public static int game_results_type = 0;
     public final static int GAME = 1234;
     public final static int SHARE_RESULTS = 5678;
+    public final static int COMMENT = 9;
 
     /**
      * Whether or not we're showing the back of the card (otherwise showing the front).
@@ -109,7 +110,7 @@ public class Main extends PortraitActivity {
         super.onResume();
         //leer cambios en las opciones
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        hard = prefs.getBoolean("difficulty", false);
+        //hard = prefs.getBoolean("difficulty", false);
         deleteScores = prefs.getBoolean("delete_scores", false);
     }
 
@@ -152,6 +153,8 @@ public class Main extends PortraitActivity {
                     .commit();*/
         }else if(requestCode == SHARE_RESULTS){
             launchRanking();
+        }else if(requestCode == COMMENT){
+            launchThanks();
         }else {
             Log.i("myAPP", "Se ha salido abruptamente, pulsando la tecla volver.");
         }
@@ -361,6 +364,17 @@ public class Main extends PortraitActivity {
         startActivity(i);
     }
 
+    public void launchThanks(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(getResources().getString(R.string.thanks_for_share));
+        builder.setPositiveButton(getResources().getString(R.string.dialog_continue).toUpperCase(), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                //consumir sin hacer nada
+            }
+        });
+        builder.show();
+    }
+
     public void launchShare(){
         try{
             Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
@@ -400,7 +414,7 @@ public class Main extends PortraitActivity {
     public void launchComment(){
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse("market://details?id=com.creativefunapps.tileschallenge"));
-        startActivity(intent);
+        startActivityForResult(intent, COMMENT);
     }
 
     public void launchHelp(){
@@ -473,9 +487,9 @@ public class Main extends PortraitActivity {
                                  Bundle savedInstanceState) {
             View inputView = inflater.inflate(R.layout.fragment_card_back, container, false);
             //al usar fragments hasta este punto no se han generado los botones ni sus id correspondientes para poder apuntarlos y asignarles onClick
-            inputView.findViewById(R.id.button1).setOnClickListener(startGame);
-            inputView.findViewById(R.id.button2).setOnClickListener(startGame);
-            inputView.findViewById(R.id.button3).setOnClickListener(startGame);
+            inputView.findViewById(R.id.button1).setOnClickListener(showDifficultyDialog);
+            inputView.findViewById(R.id.button2).setOnClickListener(showDifficultyDialog);
+            //inputView.findViewById(R.id.button3).setOnClickListener(showDifficultyDialog);
             inputView.findViewById(R.id.button4).setOnClickListener(openOptions);
 
             inputView.findViewById(R.id.button3).setVisibility(View.GONE);
@@ -531,6 +545,50 @@ public class Main extends PortraitActivity {
             Intent i = new Intent(view.getContext(), Score.class);
             ((Activity)view.getContext()).startActivity(i);
         }
+    };
+
+    static View.OnClickListener showDifficultyDialog = new View.OnClickListener() {
+        @Override
+        public void onClick(final View view) {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+            builder.setMessage(view.getResources().getString(R.string.difficulty_selection));
+            builder.setNegativeButton(view.getResources().getString(R.string.easy).toUpperCase(), new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    hard = false;
+                    launchGame(view);
+                }
+            });
+            builder.setPositiveButton(view.getResources().getString(R.string.hard).toUpperCase(), new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    hard = true;
+                    launchGame(view);
+                }
+            });
+            builder.show();
+        }
+    };
+
+    static void launchGame(View view) {
+        Intent i = new Intent(view.getContext(), Game.class);
+        switch(view.getId()) {
+            case R.id.button1:
+                i.putExtra("mode", 1);
+                archievements_before_game = archievement_warehouse.archievementList(50);
+                points_max_before_game = score_warehouse.highestScore(1, hard);
+                break;
+            case R.id.button2:
+                i.putExtra("mode", 2);
+                archievements_before_game = archievement_warehouse.archievementList(50);
+                points_max_before_game = score_warehouse.highestScore(2, hard);
+                break;
+            case R.id.button3:
+                i.putExtra("mode", 3);
+                break;
+            case R.id.button4:
+                ((Activity) view.getContext()).openOptionsMenu();
+                break;
+        }
+        ((Activity)view.getContext()).startActivityForResult(i, GAME);
     };
 
     static View.OnClickListener startGame = new View.OnClickListener() {
