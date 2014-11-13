@@ -30,7 +30,7 @@
     <string name="menu_config">Settings</string>
     <string name="easy">Easy</string>
     <string name="hard">Hard</string>
-    <string name="difficulty_selection">Select difficulty</string>
+    <string name="difficulty_selection">Choose difficulty</string>
     <string name="all">All</string>
     <string name="score_score">Scores</string>
     <string name="score_ranking">Ranking</string>
@@ -41,7 +41,7 @@
     <string name="prefHard">Check for higher difficulty</string>
     <string name="prefHardTitle">Hard difficulty</string>
     <string name="prefDeleteScores">Tap to start from zero</string>
-    <string name="prefDeleteScoresTitle">Clear statistics</string>
+    <string name="prefDeleteScoresTitle">Reset score</string>
     <string name="prefShowHelp">Redisplay help at the beggining</string>
     <string name="prefShowHelpTitle">Show help</string>
     <string name="title_activity_preferences">Preferences</string>

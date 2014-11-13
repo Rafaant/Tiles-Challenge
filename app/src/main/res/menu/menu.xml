@@ -13,7 +13,10 @@
     <item android:id="@+id/menu_help"
         android:title="@string/menu_help"
         android:orderInCategory="4" />
-    <item android:id="@+id/menu_config"
+    <!--<item android:id="@+id/menu_config"
         android:title="@string/menu_config"
+        android:orderInCategory="5" />-->
+    <item android:id="@+id/menu_delete_scores"
+        android:title="@string/prefDeleteScoresTitle"
         android:orderInCategory="5" />
 </menu>

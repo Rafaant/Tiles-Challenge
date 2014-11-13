@@ -58,29 +58,36 @@
         android:textColor="@android:color/black"
         android:layout_toLeftOf="@+id/imageView" />
 
-    <TextView
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/click_to_continue"
-        android:id="@+id/topBarMessage"
-        android:layout_gravity="center_vertical"
-        android:gravity="center_horizontal|center_vertical"
-        android:textAppearance="@android:style/TextAppearance.Holo.Medium"
-        android:textColor="@android:color/holo_red_dark"
-        android:layout_marginTop="50sp"
-        android:layout_centerHorizontal="true"
-        android:visibility="invisible" />
+        android:id="@+id/header"
+        android:layout_centerHorizontal="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/time"
-        android:layout_gravity="center"
-        android:layout_centerHorizontal="true"
-        android:textColor="@android:color/black"
-        android:textStyle="bold"
-        android:id="@+id/tvTime" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/button2"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:textColor="@android:color/black"
+            android:textStyle="bold|italic"
+            android:id="@+id/tvMode"
+            android:layout_marginRight="7sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="dificultad"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:textColor="@android:color/black"
+            android:textStyle="italic"
+            android:id="@+id/tvDifficulty" />
+    </LinearLayout>
 
     <ProgressBar
         style="?android:attr/progressBarStyleHorizontal"
@@ -92,22 +99,56 @@
         android:max="30"
         android:layout_weight="1"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/tvTime"
-        android:layout_marginLeft="150sp"
+        android:layout_below="@+id/header"
+        android:layout_marginLeft="130sp"
         android:progressDrawable="@drawable/progressbar_blue"
         android:minHeight="5sp"
         android:layout_marginTop="4sp" />
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13sp"
+        android:layout_below="@+id/header">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/time"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:id="@+id/tvTime"
+            android:layout_marginRight="7sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/time"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/header"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Small Text"
-        android:id="@+id/time"
-        android:layout_gravity="center"
+        android:text="@string/click_to_continue"
+        android:id="@+id/topBarMessage"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_horizontal|center_vertical"
+        android:textAppearance="@android:style/TextAppearance.Holo.Medium"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_marginTop="50sp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/tvTime"
-        android:layout_marginTop="12sp"
-        android:textColor="@android:color/black" />
+        android:visibility="invisible"
+        android:textStyle="italic" />
 
 </RelativeLayout>

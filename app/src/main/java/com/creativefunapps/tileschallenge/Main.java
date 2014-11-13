@@ -351,8 +351,11 @@ public class Main extends PortraitActivity {
             case R.id.menu_help:
                 launchHelp();
                 return true;
-            case R.id.menu_config:
+            /*case R.id.menu_config:
                 launchPreferences();
+                return true;*/
+            case R.id.menu_delete_scores:
+                eraseScoresDialog();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -425,6 +428,29 @@ public class Main extends PortraitActivity {
     public void launchPreferences(){
         Intent i = new Intent(this, Preferences.class);
         startActivity(i);
+    }
+
+    public void eraseScoresDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.preferences_dialog_scores);
+        builder.setPositiveButton(R.string.preferences_dialog_accept, new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int id) {
+                //action on dialog ok
+                //delete scores
+                new ScoreWarehouseSQLite(Main.this).deleteScores();
+                new ArchievementWarehouseSQLite(Main.this).deleteArchievements();
+            }
+
+        });
+        builder.setNegativeButton(R.string.preferences_dialog_cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //action on dialog cancel
+                //nothing
+            }
+        });
+        builder.show();
     }
 
     private void flipCard () {

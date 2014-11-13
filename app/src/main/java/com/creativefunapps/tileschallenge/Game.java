@@ -301,6 +301,9 @@ public class Game extends PortraitActivity {
             text.setText(""+level);
             text = (TextView) inputView.findViewById(R.id.lives);
             text.setText(String.valueOf(lives));
+            text = (TextView) inputView.findViewById(R.id.tvDifficulty);
+            text.setText((Main.hard==true)?getResources().getString(R.string.hard)+" ":getResources().getString(R.string.easy)+" "); //espacios añadidos porque al ser italic se come un trozo de la ultima letra
+            text.setTextColor((Main.hard == true) ? getResources().getColor(android.R.color.holo_red_dark) : getResources().getColor(android.R.color.holo_blue_dark));
             progressBar = (ProgressBar) inputView.findViewById(R.id.progressBar);
             text = (TextView) inputView.findViewById(R.id.time);
             text.setText(Long.toString(time/1000) + " s.");
