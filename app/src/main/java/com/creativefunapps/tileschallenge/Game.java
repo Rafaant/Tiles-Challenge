@@ -61,7 +61,7 @@ public class Game extends PortraitActivity {
     public static final int LIVES_EACH_X_LEVELS_CHAINED = 9; //PONER 1 MENOS DE LOS QUE QUIERAS (funciona así)
     public static final int TIME_EACH_X_LEVELS_EASY = 5;
     public static final int TIME_EACH_X_LEVELS_HARD = 10;
-    public static final int TIME_ADDED_EASY = 5000;
+    public static final int TIME_ADDED_EASY = 10000;
     public static final int TIME_ADDED_HARD = 15000;
     public static int mode;
     public static final int SHOW_INTERSTITIAL_EACH_X_LEVELS_MODE_1 = 5;
@@ -576,6 +576,8 @@ public class Game extends PortraitActivity {
         tv.setText(getString(R.string.click_to_continue)+" "); //espacio añadido porque al ser italic se come un trozo de la ultima letra
         tv.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
         tv.setVisibility(View.VISIBLE);
+        Animation blink_tile = AnimationUtils.loadAnimation(this, R.anim.blink_tile);
+        tv.startAnimation(blink_tile);
         for(int i=0; i<MyAdapter.getCount(); i++){
             MyAdapter.getItem(i).setClickable(true);
             MyAdapter.getItem(i).setOnClickListener(new View.OnClickListener() {
@@ -612,6 +614,8 @@ public class Game extends PortraitActivity {
         });
         builder.show();
     }
+
+
 
     //solo devuelve el result con la puntuacion esperada por el Main y cierra el juego
     public void gameEnd(){
@@ -736,6 +740,9 @@ public class Game extends PortraitActivity {
     @Override
     public void onPause() {
         adView.pause();
+        if(timer!=null){
+            timer.pause();
+        }
         super.onPause();
     }
 
@@ -743,10 +750,16 @@ public class Game extends PortraitActivity {
     public void onResume() {
         super.onResume();
         adView.resume();
+        if(timer!=null){
+            timer.resume();
+        }
     }
 
     @Override
     public void onDestroy() {
+        if(timer!=null){
+            timer.cancel();
+        }
         adView.destroy();
         super.onDestroy();
     }
