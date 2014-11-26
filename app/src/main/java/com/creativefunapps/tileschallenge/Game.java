@@ -82,6 +82,7 @@ public class Game extends PortraitActivity {
     //private MyCountDownTimer timer;
     private com.creativefunapps.tileschallenge.CountDownTimer timer;
     public static boolean start = true;
+    boolean pause_because_add = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -539,11 +540,14 @@ public class Game extends PortraitActivity {
         }
     }
 
-    public void addTime(long time_to_add){
+    public void addTime(final long time_to_add){
         timer.cancel();
+        if(time+time_to_add>progressBar.getMax()){
+            progressBar.setMax((int)(time+time_to_add)/1000);
+        }
         timer = new com.creativefunapps.tileschallenge.CountDownTimer(time + time_to_add, 1000) {
             boolean add_time = false;
-            long time_to_add;
+            //long time_to_add;
             int t;
 
             @Override
@@ -554,6 +558,7 @@ public class Game extends PortraitActivity {
                     Log.v("myAPP", "----- 2 : actualizacion de la barra");
                     progressBar.setProgress((int) millisUntilFinished / 1000);
                     ((topBarMode2) topbar).refresh_time((int) millisUntilFinished / 1000);
+
 
                 }else{//NO LO TENGO CLARO creo que aqui nunca entra cuando se te acaban las vidas por que eso lo contempla testCorrect, se termina alli la partida y no por el tick del temporizador
                     onFinish();
@@ -746,6 +751,10 @@ public class Game extends PortraitActivity {
         if(timer!=null){
             timer.pause();
         }
+        if(!start) { //para que no aparezca cuando estamos en el help_overlay
+            pause_because_add = true;
+            layout.setVisibility(View.INVISIBLE);
+        }
         super.onPause();
     }
 
@@ -753,8 +762,19 @@ public class Game extends PortraitActivity {
     public void onResume() {
         super.onResume();
         adView.resume();
-        if(timer!=null){
-            timer.resume();
+        if(pause_because_add==true) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setCancelable(false);
+            builder.setTitle(getString(R.string.pause));
+            builder.setPositiveButton(getString(R.string.dialog_continue), new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    if (timer != null) {
+                        timer.resume();
+                    }
+                    layout.setVisibility(View.VISIBLE);
+                }
+            }).show();
+            pause_because_add=false;
         }
     }
 

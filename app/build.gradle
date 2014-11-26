@@ -15,8 +15,8 @@ android {
         applicationId 'com.creativefunapps.tileschallenge'
         minSdkVersion 14
         targetSdkVersion 20
-        versionCode 8
-        versionName '1.2'
+        versionCode 9
+        versionName '1.3'
         signingConfig signingConfigs.config
     }
     buildTypes {

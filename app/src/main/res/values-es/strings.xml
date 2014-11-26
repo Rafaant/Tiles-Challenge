@@ -78,8 +78,10 @@
     <string name="archievements_header">LOGROS</string>
     <string name="archievements_checked">CONSEGUIDO</string>
     <string name="unsuccessful_game">No ha sido tu mejor partida.\n\n¡Inténtalo de nuevo!</string>
-    <string name="dialog_continue">Continuar</string>
-    <string name="dialog_share">¡Compartir!</string>
+    <string name="dialog_continue">CONTINUAR</string>
+    <string name="dialog_share">¡COMPARTIR!</string>
+    <string name="dialog_retry">REPETIR</string>
+    <string name="results_text">RESULTADO DE LA PARTIDA:</string>
     <string name="time">TIEMPO</string>
     <string name="share_dialog_title">Compartir vía</string>
     <string name="share_from_dialog_text_record_archievement_1">He conseguido un récord de</string>
@@ -88,6 +90,9 @@
     <string name="share_from_dialog_text_record_only_2">puntos. </string>
     <string name="share_from_dialog_text_archievement_only_1">He conseguido logros nuevos:</string>
     <string name="share_from_dialog_tail">¡TE RETO! Consígue el juego aquí, es gratis.\n\nhttps://play.google.com/store/apps/details?id=com.creativefunapps.tileschallenge</string>
+    <string name="share_results_record_and_archievement">He conseguido un nuevo récord y nuevos logros.</string>
+    <string name="share_results_record">He conseguido un nuevo récord.</string>
+    <string name="share_results_archievement">He desbloqueado nuevos logros.</string>
     <string name="game_results_record">He conseguido un récord de</string>
     <string name="game_results_points">puntos</string>
     <string name="game_results_archievement">He conseguido nuevos logros:</string>
@@ -169,5 +174,6 @@
     </string-array>
 
     <string name="title_activity_advertisement">Publicidad</string>
+    <string name="title_activity_results">Results</string>
 
 </resources>

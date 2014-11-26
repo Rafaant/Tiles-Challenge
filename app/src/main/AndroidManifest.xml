@@ -4,18 +4,30 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:hardwareAccelerated="true" >
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
         <!-- Google Analytics Version v4 needs this value for easy tracking -->
-        <meta-data android:name="com.google.android.gms.analytics.globalConfigResource"
+        <meta-data
+            android:name="com.google.android.gms.analytics.globalConfigResource"
             android:resource="@xml/global_tracker" />
+
+        <!-- Valores para Google Play Games Leaaderboards -->
+        <meta-data
+            android:name="com.google.android.gms.games.APP_ID"
+            android:value="@string/app_id" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
@@ -65,6 +77,11 @@
             android:name=".Advertisement"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:label="@string/title_activity_advertisement" >
+        </activity>
+        <activity
+            android:name=".Results"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_results" >
         </activity>
     </application>
 

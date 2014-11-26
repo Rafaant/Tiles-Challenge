@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Vector;
 
@@ -27,7 +29,7 @@ public class MyListViewAdapterArchievements extends BaseAdapter {
         this.lista.add(17, new ArchievementWarehouse.Archievement(0,false,actividad.getResources().getString(R.string.all),0,false));
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, final View convertView, ViewGroup parent) {
         LayoutInflater inflater = actividad.getLayoutInflater();
         View view;
         if(position==0 || position==8 || position==17){
@@ -60,6 +62,8 @@ public class MyListViewAdapterArchievements extends BaseAdapter {
 
         return view;
     }
+
+
 
     public int getCount() {
         return lista.size();

@@ -75,28 +75,32 @@
         \n\nWatch the timer, don\'t let it reach zero!. Gain more time to advance levels, earn extra points for not making mistakes and lives by overcoming multiple levels without making mistakes on hard difficulty.
         \n\nSome achievements are only available to the top players, let\'s see how far you can get…</string>
     <string name="help_hard">\n\nIn hard difficulty it may be more than one square to be touch. Get them all to go to the next level.</string>
-    <string name="archievements_header">ARCHIEVEMENTS</string>
+    <string name="archievements_header">ACHIEVEMENTS</string>
     <string name="archievements_checked">OBTAINED</string>
     <string name="unsuccessful_game">That wasn\'t your best game.\n\nTry again!</string>
-    <string name="dialog_continue">Continue</string>
-    <string name="dialog_share">Share!</string>
+    <string name="dialog_continue">CONTINUE</string>
+    <string name="dialog_share">SHARE!</string>
+    <string name="dialog_retry">RETRY</string>
+    <string name="results_text">GAME RESULTS:</string>
     <string name="time">TIME</string>
     <string name="share_dialog_title">Share via</string>
     <string name="share_from_dialog_text_record_archievement_1">I\'ve got a record of</string>
-    <string name="share_from_dialog_text_record_archievement_2">points, and the following archievements: </string>
+    <string name="share_from_dialog_text_record_archievement_2">points, and the following achievements: </string>
     <string name="share_from_dialog_text_record_only_1">I\'ve got a record of</string>
     <string name="share_from_dialog_text_record_only_2">points. </string>
-    <string name="share_from_dialog_text_archievement_only_1">I\'ve got new archievements:</string>
+    <string name="share_from_dialog_text_archievement_only_1">I\'ve got new achievements:</string>
     <string name="share_from_dialog_tail">I CHALLENGE YOU! Get the game here, it\'s free.\n\nhttps://play.google.com/store/apps/details?id=com.creativefunapps.tileschallenge</string>
+    <string name="share_results_record_and_archievement">I\'ve got a new record and new achievements.</string>
+    <string name="share_results_record">I\'ve got a new record.</string>
+    <string name="share_results_archievement">I\'ve unlocked new achievements.</string>
     <string name="game_results_record">I\'ve got a record of</string>
     <string name="game_results_points">points</string>
-    <string name="game_results_archievement">I\'ve got new archievements:</string>
-    <string name="game_results_record_and_archievement">and new archievements:</string>
+    <string name="game_results_archievement">I\'ve got new achievements:</string>
+    <string name="game_results_record_and_archievement">and new achievements:</string>
     <string name="game_results_challenge">I CHALLENGE YOU!</string>
     <string name="share_app_text">I\'ve played the TILES CHALLENGE game app and I love it. Get it here! It\'s free.\n\nhttps://play.google.com/store/apps/details?id=com.creativefunapps.tileschallenge</string>
     <string name="share_app_via">Share via</string>
     <string name="thanks_for_share">Thanks for your comment!</string>
-
     <string name="archievements1_easy_level50">Level 50</string>
     <string name="archievements1_easy_level50_desc">\"Taking the first steps\"</string>
     <string name="archievements1_easy_level100">Level 100</string>
@@ -127,7 +131,7 @@
     <string name="archievements1_hard_big_chain_desc">\"Sharp eyes\"</string>
     <string name="archievements2_hard_time60">Earn 60 seconds of time *</string>
     <string name="archievements2_hard_time60_desc">\"Everlasting\"</string>
-    <string name="archievements_all">Get all the archievements</string>
+    <string name="archievements_all">Get all the achievements</string>
     <string name="archievements_all_desc">\"Tiles Challenge MASTER!\"</string>
 
     <string-array name="archievements_array">
@@ -168,5 +172,6 @@
     </string-array>
 
     <string name="title_activity_advertisement">Advertisement</string>
+    <string name="title_activity_results">Results</string>
 
 </resources>

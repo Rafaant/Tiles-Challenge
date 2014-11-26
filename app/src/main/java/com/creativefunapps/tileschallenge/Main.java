@@ -41,13 +41,14 @@ public class Main extends PortraitActivity {
     public static boolean deleteScores = false;
     public static boolean show_help_mode1 = true;
     public static boolean show_help_mode2 = true;
-    public final int RECORD_AND_ARCHIEVEMENT = 1;
-    public final int RECORD_ONLY = 2;
-    public final int ARCHIEVEMENT_ONLY = 3;
+    public static final int RECORD_AND_ARCHIEVEMENT = 1;
+    public static final int RECORD_ONLY = 2;
+    public static final int ARCHIEVEMENT_ONLY = 3;
     public static int game_results_type = 0;
     public final static int GAME = 1234;
     public final static int SHARE_RESULTS = 5678;
     public final static int COMMENT = 9;
+    public final static int RETRY_CODE = 10;
 
     /**
      * Whether or not we're showing the back of the card (otherwise showing the front).
@@ -155,8 +156,15 @@ public class Main extends PortraitActivity {
             launchRanking();
         }else if(requestCode == COMMENT){
             launchThanks();
+        }else if(resultCode == RETRY_CODE){
+            Log.i("myAPP", "RETRY");
+            Intent i = new Intent(this, Game.class);
+            i.putExtra("mode", mode);
+            archievements_before_game = archievement_warehouse.archievementList(50);
+            points_max_before_game = score_warehouse.highestScore(mode, hard);
+            startActivityForResult(i, GAME);
         }else {
-            Log.i("myAPP", "Se ha salido abruptamente, pulsando la tecla volver.");
+            Log.i("myAPP", "Se ha salido abruptamente, pulsando la tecla volver. O no se ha devuelto un requestCode/resultCode contemplado");
         }
     }
 
@@ -245,37 +253,46 @@ public class Main extends PortraitActivity {
             for(int i=0; i<Main.archievements_after_game.size(); i++){
                 Log.i("myAPP", "pos[]" + pos[i]);
                 if(pos[i]==1){
-                    str_logros += "\n- " + Main.archievements_after_game.elementAt(i).getName().substring(0, Main.archievements_after_game.elementAt(i).getName().length()-1) + ":\n\t" + ArchievementWarehouseSQLite.ARCHIEVEMENTS_DESC_STRINGS[i] + "\n";
+                    str_logros += "- " + ((Main.hard)?Main.archievements_after_game.elementAt(i).getName().substring(0, Main.archievements_after_game.elementAt(i).getName().length()-1):Main.archievements_after_game.elementAt(i).getName()) + ":\n\t" + ArchievementWarehouseSQLite.ARCHIEVEMENTS_DESC_STRINGS[i] + "\n";
                 }
             }
         }
+
+        Intent i = new Intent(this, Results.class);
+        i.putExtra("points", points);
+        i.putExtra("achievements", str_logros);
+        i.putExtra("difficulty", Main.hard);
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         Log.i("myAPP", "mode, Main.hard: " + mode + " " + Main.hard + "\npoints, ScoreWarehouseSQLite(this).highestScore(mode, Main.hard): " + points + " " + new ScoreWarehouseSQLite(this).highestScore(mode, Main.hard));
         if(points > points_max_before_game){
             if(isNew_archievements){
-                builder.setMessage(getString(R.string.dialog_new_highscore_and_archievement) + "\n\n" + "- " + points + " " + getString(R.string.points).toLowerCase() + "\n" + str_logros);
+                /*builder.setMessage(getString(R.string.dialog_new_highscore_and_archievement) + "\n\n" + "- " + points + " " + getString(R.string.points).toLowerCase() + "\n" + str_logros);
                 builder.setNegativeButton(getString(R.string.dialog_share).toUpperCase(), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         launchShareFromDialog(RECORD_AND_ARCHIEVEMENT);
                     }
-                });
+                });*/
+                i.putExtra("case", RECORD_AND_ARCHIEVEMENT);
+                i.putExtra("title", getString(R.string.dialog_new_highscore_and_archievement));
             }else{
-                builder.setMessage(getString(R.string.dialog_new_highscore) + "\n\n" + "- " + points + " " + getString(R.string.points).toLowerCase());
+                /*builder.setMessage(getString(R.string.dialog_new_highscore) + "\n\n" + "- " + points + " " + getString(R.string.points).toLowerCase());
                 builder.setNegativeButton(getString(R.string.dialog_share).toUpperCase(), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                        launchShareFromDialog(RECORD_ONLY);
                     }
-                });
+                });*/
+                i.putExtra("case", RECORD_ONLY);
+                i.putExtra("title", getString(R.string.dialog_new_highscore));
             }
-            builder.setPositiveButton(getString(R.string.dialog_continue).toUpperCase(), new DialogInterface.OnClickListener() {
+            /*builder.setPositiveButton(getString(R.string.dialog_continue).toUpperCase(), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     launchRanking();
                 }
             });
-            builder.show();
+            builder.show();*/
         }else if(isNew_archievements){
-            builder.setMessage(getString(R.string.dialog_new_archievement) + "\n\n" + str_logros);
+            /*builder.setMessage(getString(R.string.dialog_new_archievement) + "\n\n" + str_logros);
             builder.setPositiveButton(getString(R.string.dialog_continue).toUpperCase(), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     launchRanking();
@@ -286,7 +303,9 @@ public class Main extends PortraitActivity {
                     launchShareFromDialog(ARCHIEVEMENT_ONLY);
                 }
             });
-            builder.show();
+            builder.show();*/
+            i.putExtra("case", ARCHIEVEMENT_ONLY);
+            i.putExtra("title", getString(R.string.dialog_new_archievement));
         }else{
             builder.setMessage(getString(R.string.unsuccessful_game));
             builder.setPositiveButton(getString(R.string.dialog_continue).toUpperCase(), new DialogInterface.OnClickListener() {
@@ -296,6 +315,8 @@ public class Main extends PortraitActivity {
             });
             builder.show();
         }
+
+        startActivityForResult(i, RETRY_CODE);
     }
 
     public void showGameSummaryFragment(){

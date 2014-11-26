@@ -20,7 +20,7 @@
             android:layout_weight="1"
             android:paddingLeft="50sp"
             android:paddingRight="50sp"
-            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:textAppearance="@android:style/TextAppearance.Holo.Small"
             android:textColor="@android:color/black"
             android:textStyle="bold"
             android:background="@drawable/button_practice" />

@@ -2,14 +2,18 @@ package com.creativefunapps.tileschallenge;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.ListFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -92,7 +96,7 @@ public class Score extends PortraitActivity {
         public void refresh(){
 
         }
-        View.OnClickListener changeFragment = new View.OnClickListener() {
+        /*View.OnClickListener changeFragment = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 switch(view.getId()) {
@@ -108,7 +112,7 @@ public class Score extends PortraitActivity {
                         break;
                 }
             }
-        };
+        };*/
     }
 
     private static boolean front;
@@ -147,7 +151,7 @@ public class Score extends PortraitActivity {
         };
     }
 
-    public static class archievementsFragment extends Fragment {
+    public static class archievementsFragment extends ListFragment {
         private View inputView;
         private TextView text;
         private static CheckBox cb;
@@ -158,7 +162,21 @@ public class Score extends PortraitActivity {
             ListView layout = (ListView) inputView.findViewById(android.R.id.list);
             Vector<ScoreRepresentationClass> list = new Vector<ScoreRepresentationClass>();
             layout.setAdapter(new MyListViewAdapterArchievements((Activity) inputView.getContext(), Main.archievement_warehouse.archievementList(50)));
+            //este on click funciona en los elementos vacíos, es decir, donde pone facil, dificil y todos. En los elementos buenos no hace nada
+            /*layout.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Toast.makeText(inputView.getContext(), "prueba", Toast.LENGTH_SHORT).show();
+                }
+            });*/
+
+
             return inputView;
         }
+        /*@Override
+        public void onListItemClick(ListView l, View v, int position, long id) {
+            // put your handler here
+            Toast.makeText(inputView.getContext(), "prueba 2", Toast.LENGTH_SHORT).show();
+        }*/
     }
 }
