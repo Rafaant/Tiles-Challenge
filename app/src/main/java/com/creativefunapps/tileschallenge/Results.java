@@ -64,6 +64,8 @@ public class Results extends Activity {
                 break;
         }
 
+        ((TextView)findViewById(R.id.mode)).setText(i.getStringExtra("mode").toUpperCase());
+
         if(i.getBooleanExtra("difficulty", false)==false){
             ((TextView)findViewById(R.id.difficulty)).setText(getResources().getString(R.string.easy));
             ((TextView)findViewById(R.id.difficulty)).setTextColor(getResources().getColor(android.R.color.holo_blue_dark));

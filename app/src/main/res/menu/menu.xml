@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/menu_score"
-        android:title="@string/menu_score"
+    <item android:id="@+id/menu_googleplus"
+        android:title="@string/menu_googleplus"
         android:orderInCategory="1" />
+    <!--<item android:id="@+id/menu_score"
+        android:title="@string/menu_score"
+        android:orderInCategory="2" />-->
     <item android:id="@+id/menu_share"
         android:title="@string/menu_share"
-        android:orderInCategory="2" />
+        android:orderInCategory="3" />
     <item android:id="@+id/menu_comment"
         android:title="@string/menu_comment"
-        android:orderInCategory="3" />
+        android:orderInCategory="4" />
     <item android:id="@+id/menu_help"
         android:title="@string/menu_help"
-        android:orderInCategory="4" />
+        android:orderInCategory="5" />
     <!--<item android:id="@+id/menu_config"
         android:title="@string/menu_config"
-        android:orderInCategory="5" />-->
+        android:orderInCategory="6" />-->
     <item android:id="@+id/menu_delete_scores"
         android:title="@string/prefDeleteScoresTitle"
-        android:orderInCategory="5" />
+        android:orderInCategory="6" />
 </menu>

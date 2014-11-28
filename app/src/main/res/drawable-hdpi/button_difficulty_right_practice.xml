@@ -10,15 +10,17 @@
                 android:endColor="#ffff8800"
                 android:angle="315"/>
             <corners
-                android:radius="10sp" />
+                android:bottomRightRadius="10sp"
+                android:topRightRadius="10sp" />
         </shape>
     </item>
     <item>
         <shape>
             <solid
-                android:color="#ffffffff" />
+                android:color="#FFFFFFFF" />
             <corners
-                android:radius="10sp" />
+                android:bottomRightRadius="10sp"
+                android:topRightRadius="10sp" />
         </shape>
     </item>
 </selector>

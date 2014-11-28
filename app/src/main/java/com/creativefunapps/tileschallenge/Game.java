@@ -5,10 +5,13 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,9 +33,11 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.games.Games;
+import com.google.example.games.basegameutils.BaseGameActivity;
 
 
-public class Game extends PortraitActivity {
+public class Game extends BaseGameActivity {
 
     public static final int STARTING_TILES = 2;
     public static final int MAX_TILES = 9;
@@ -92,6 +97,8 @@ public class Game extends PortraitActivity {
         /*Intent j = new Intent(this, Advertisement.class);
         startActivity(j);*/
 
+        getGameHelper().setMaxAutoSignInAttempts(0);
+
         tiles=STARTING_TILES;
         level=STARTING_LEVEL;
         lives=LIVES;
@@ -134,6 +141,12 @@ public class Game extends PortraitActivity {
         }
     }
 
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+        super.onConfigurationChanged(newConfig);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
+
     private void mode1(Bundle savedInstanceState){
         if (savedInstanceState == null) {
             if(Main.show_help_mode1){
@@ -168,6 +181,16 @@ public class Game extends PortraitActivity {
 
     private void mode3(){
 
+    }
+
+    @Override
+    public void onSignInFailed() {
+
+    }
+
+    @Override
+    public void onSignInSucceeded() {
+        Games.setGravityForPopups(getApiClient(), Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
     }
 
     public static class helpFragment extends Fragment {
@@ -364,6 +387,50 @@ public class Game extends PortraitActivity {
 
     //comprueba pulsaciones para todos los modos, puesto que es un callback de unClick de un xml y no se pueden dar parametros
     public void testCorrect(View v){
+        if(Main.online){
+            switch(((Main.hard)?1:0)){
+                case 0:
+                    if(points>=100000){
+                        send_achievement_to_google_play_games(getString(R.string.achievement_100_000_points__easy));
+                    }
+                    if(level>=150){
+                        send_achievement_to_google_play_games(getString(R.string.achievement_level_150__easy));
+                    }else if(level>=100){
+                        send_achievement_to_google_play_games(getString(R.string.achievement_level_100__easy));
+                    }else if(level>=50){
+                        send_achievement_to_google_play_games(getString(R.string.achievement_level_50__easy));
+                    }
+                    if(chain_max>=75){
+                        send_achievement_to_google_play_games(getString(R.string.achievement_75_consecutive_hits__easy));
+                    }else if(chain_max>=50){
+                        send_achievement_to_google_play_games(getString(R.string.achievement_50_consecutive_hits__easy));
+                    }
+                    if(top_time>=60000){
+                        send_achievement_to_google_play_games(getString(R.string.achievement_earn_60_seconds__easy));
+                    }
+                    break;
+                case 1:
+                    if(top_lives>=10){
+                        send_achievement_to_google_play_games(getString(R.string.achievement_get_10_lives__hard));
+                    }
+                    if(level>=150){
+                        send_achievement_to_google_play_games(getString(R.string.achievement_level_150__hard));
+                    }else if(level>=100){
+                        send_achievement_to_google_play_games(getString(R.string.achievement_level_100__hard));
+                    }else if(level>=50){
+                        send_achievement_to_google_play_games(getString(R.string.achievement_level_50__hard));
+                    }
+                    if(chain_max>=50){
+                        send_achievement_to_google_play_games(getString(R.string.achievement_50_consecutive_hits__hard));
+                    }else if(chain_max>=25){
+                        send_achievement_to_google_play_games(getString(R.string.achievement_25_consecutive_hits__hard));
+                    }
+                    if(top_time>=60000){
+                        send_achievement_to_google_play_games(getString(R.string.achievement_earn_60_seconds__hard));
+                    }
+                    break;
+            }
+        }
         switch(mode){
             case 1:
                 /*if(level%SHOW_INTERSTITIAL_EACH_X_LEVELS_MODE_1==0){//mostrar publicidad cada x niveles en modo práctica
@@ -538,6 +605,10 @@ public class Game extends PortraitActivity {
 
                 break;
         }
+    }
+
+    public void send_achievement_to_google_play_games(String ach){
+        Games.Achievements.unlock(getApiClient(), ach);
     }
 
     public void addTime(final long time_to_add){

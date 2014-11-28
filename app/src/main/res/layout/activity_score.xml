@@ -14,13 +14,17 @@
         android:tileMode="disabled"
         android:visibility="visible" />
 
-    <FrameLayout
+    <include android:id="@+id/containerTitle" layout="@layout/score_topbar"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent" />
+
+    <!--<FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="0"
         android:id="@+id/containerTitle"
-        android:layout_alignParentTop="true"></FrameLayout>
+        android:layout_alignParentTop="true"></FrameLayout>-->
 
     <FrameLayout
         android:layout_width="fill_parent"

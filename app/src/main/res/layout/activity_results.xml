@@ -86,7 +86,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="@string/points"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
@@ -118,23 +118,55 @@
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="fill_parent"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/row2"
                 android:layout_below="@+id/results_title"
-                android:layout_marginTop="45sp">
+                android:id="@+id/rowMode"
+                android:layout_marginTop="45sp"
+                android:layout_centerHorizontal="true">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/gamemode"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:layout_alignBottom="@+id/points"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/textView4" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Smalfasdfas"
+                    android:id="@+id/mode"
+                    android:textStyle="italic"
+                    android:layout_marginLeft="35sp" />
+
+                </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/row2"
+                android:layout_below="@+id/rowMode"
+                android:layout_marginTop="5sp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="@string/archievements_header"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
                     android:layout_alignBottom="@+id/points"
                     android:layout_centerHorizontal="true"
-                    android:id="@+id/textView3" />
+                    android:id="@+id/textView3"
+                    android:layout_gravity="center_horizontal" />
 
                 <ScrollView
                     android:layout_width="fill_parent"

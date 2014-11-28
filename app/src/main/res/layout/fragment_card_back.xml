@@ -6,34 +6,19 @@
     android:orientation="vertical"
     android:padding="20sp">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/button1"
-        android:id="@+id/button1"
-        android:textAppearance="@android:style/TextAppearance.Medium"
-        android:textStyle="bold"
-        android:layout_weight="1"
-        android:onClick="startGame"
-        android:layout_gravity="center_horizontal"
-        android:drawableLeft="@drawable/pointer_64"
-        android:paddingLeft="25sp"
-        android:background="@drawable/button_practice"
-        android:layout_marginBottom="5sp" />
-
-    <Button
+    <FrameLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:text="@string/button2"
-        android:id="@+id/button2"
-        android:textAppearance="@android:style/TextAppearance.Medium"
-        android:textStyle="bold"
         android:layout_weight="1"
-        android:onClick="startGame"
-        android:drawableLeft="@drawable/chronometer_64"
-        android:paddingLeft="25sp"
-        android:background="@drawable/button_practice"
-        android:layout_marginBottom="5sp" />
+        android:id="@+id/frame_button1"
+        android:layout_marginBottom="5sp"></FrameLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:id="@+id/frame_button2"
+        android:layout_marginBottom="5sp"></FrameLayout>
 
     <Button
         android:layout_width="fill_parent"
@@ -43,21 +28,62 @@
         android:textAppearance="@android:style/TextAppearance.Medium"
         android:textStyle="bold"
         android:layout_weight="1"
-        android:onClick="startGame"
         android:background="@drawable/button_practice"
         android:layout_marginBottom="5sp" />
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:text="@string/button4"
-        android:id="@+id/button4"
+        android:text="@string/button6"
+        android:id="@+id/button6"
         android:textAppearance="@android:style/TextAppearance.Medium"
         android:textStyle="bold"
         android:layout_weight="1"
-        android:drawableLeft="@drawable/settings_64"
-        android:paddingLeft="25sp"
-        android:onClick="openOptions"
-        android:background="@drawable/button_practice" />
+        android:drawableLeft="@drawable/rankings_64"
+        android:background="@drawable/button_practice"
+        android:layout_marginBottom="5sp"
+        android:padding="20dp" />
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="@string/button4"
+            android:id="@+id/button4"
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/settings_64"
+            android:background="@drawable/button_practice"
+            android:padding="20dp"
+            android:layout_marginBottom="5sp" />
+
+        <!--<ImageButton
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/button4"
+            android:src="@drawable/settings_64"
+            android:background="@drawable/button_practice"
+            android:layout_weight="1"
+            android:layout_marginRight="3sp" />-->
+
+        <ImageButton
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/button5"
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            android:textStyle="bold"
+            android:src="@drawable/googleplus_64"
+            android:background="@drawable/button_practice"
+            android:layout_weight="1"
+            android:layout_marginLeft="2sp"
+            android:visibility="gone" />
+
+    </LinearLayout>
 </LinearLayout>
+

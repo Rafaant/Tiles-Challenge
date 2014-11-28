@@ -6,11 +6,14 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
-        android:id="@+id/linearlayout_buttons">
+        android:id="@+id/linearlayout_buttons"
+        android:layout_marginLeft="40sp"
+        android:layout_marginRight="40sp"
+        android:layout_marginTop="10sp">
 
         <Button
             android:layout_width="fill_parent"
@@ -18,7 +21,8 @@
             android:text="@string/score_score"
             android:id="@+id/score"
             android:layout_weight="1"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone" />
 
         <Button
             android:layout_width="fill_parent"
@@ -26,7 +30,11 @@
             android:text="@string/score_ranking"
             android:id="@+id/ranking"
             android:layout_weight="1"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:background="@drawable/button_practice"
+            android:textAppearance="@android:style/TextAppearance.Holo.Small"
+            android:drawableLeft="@drawable/games_leaderboards_green_64"
+            android:paddingLeft="25sp" />
     </LinearLayout>
 
     <TextView

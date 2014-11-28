@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_id">155071231333</string>
+    <string name="leaderboard_scoreboard">CgkI5erc18EEEAIQAQ</string>
+
+    <string name="achievement_level_50__easy">CgkI5erc18EEEAIQAg</string>
+    <string name="achievement_level_100__easy">CgkI5erc18EEEAIQAw</string>
+    <string name="achievement_level_150__easy">CgkI5erc18EEEAIQBA</string>
+    <string name="achievement_100.000_points__easy">CgkI5erc18EEEAIQBQ</string>
+    <string name="achievement_50_consecutive_hits__easy">CgkI5erc18EEEAIQBg</string>
+    <string name="achievement_75_consecutive_hits__easy">CgkI5erc18EEEAIQBw</string>
+    <string name="achievement_earn_60_seconds__easy">CgkI5erc18EEEAIQCA</string>
+    <string name="achievement_level_50__hard">CgkI5erc18EEEAIQCQ</string>
+    <string name="achievement_level_100__hard">CgkI5erc18EEEAIQCg</string>
+    <string name="achievement_level_150__hard">CgkI5erc18EEEAIQCw</string>
+    <string name="achievement_50.000_points__hard">CgkI5erc18EEEAIQEQ</string>
+    <string name="achievement_get_10_lives__hard">CgkI5erc18EEEAIQDA</string>
+    <string name="achievement_25_consecutive_hits__hard">CgkI5erc18EEEAIQDQ</string>
+    <string name="achievement_50_consecutive_hits__hard">CgkI5erc18EEEAIQDg</string>
+    <string name="achievement_earn_60_seconds__hard">CgkI5erc18EEEAIQDw</string>
+    <string name="achievement_get_all_the_achievements">CgkI5erc18EEEAIQEA</string>
+</resources>

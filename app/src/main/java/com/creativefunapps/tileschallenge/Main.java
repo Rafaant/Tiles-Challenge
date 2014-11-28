@@ -3,13 +3,17 @@ package com.creativefunapps.tileschallenge;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,17 +21,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 
+import com.google.android.gms.games.Games;
+import com.google.example.games.basegameutils.BaseGameActivity;
+import com.google.example.games.basegameutils.GameHelper;
+
 import java.util.Calendar;
 import java.util.Vector;
 
-public class Main extends PortraitActivity {
+public class Main extends BaseGameActivity {
 
     private int year;
     public static boolean hard = false;
@@ -50,6 +60,8 @@ public class Main extends PortraitActivity {
     public final static int COMMENT = 9;
     public final static int RETRY_CODE = 10;
 
+    public static boolean online = true;
+
     /**
      * Whether or not we're showing the back of the card (otherwise showing the front).
      */
@@ -63,6 +75,8 @@ public class Main extends PortraitActivity {
 
         //GOOGLE ANALYTICS: Get a Tracker (should auto-report)
         //((MyApplication) getApplication()).getTracker(MyApplication.TrackerName.APP_TRACKER);
+
+        getGameHelper().setMaxAutoSignInAttempts(0);
 
 
         score_warehouse = new ScoreWarehouseSQLite(this);
@@ -106,6 +120,12 @@ public class Main extends PortraitActivity {
         );
     };
 
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+        super.onConfigurationChanged(newConfig);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -113,10 +133,12 @@ public class Main extends PortraitActivity {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         //hard = prefs.getBoolean("difficulty", false);
         deleteScores = prefs.getBoolean("delete_scores", false);
+        //resetea fragments de lso botones al volver a la pantalla principal
+        getFragmentManager().popBackStackImmediate();
     }
 
     int mode;
-    int points;
+    int points = 0;
     int level;
     String name;
     int chain_max;
@@ -127,6 +149,8 @@ public class Main extends PortraitActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.v("myAPP", "ON ACTIVITY RESULT - requestCode - resultCode:" + String.valueOf(requestCode) + " - " + String.valueOf(resultCode) + " - RESULT_OK: " + RESULT_OK);
+
+
 
         if (requestCode == GAME & resultCode == RESULT_OK & data != null) {
             mode = data.getExtras().getInt("mode");
@@ -143,6 +167,17 @@ public class Main extends PortraitActivity {
 
             score_warehouse.storeScore(mode, hard, points, level, chain_max, name, System.currentTimeMillis());
             archievements_after_game = archievement_warehouse.archievementList(50);
+
+            //subir puntos a google play games si estamos conectados:
+            /*if(getApiClient().isConnected()) {
+            //if(isSignedIn()) {
+                Log.e("myAPP", "estamos conectados y vamos a enviar puntuacion al servidor de google play games");
+                Games.Leaderboards.submitScore(getApiClient(),
+                        getString(R.string.leaderboard_scoreboard),
+                        points);
+            }else{
+                Log.e("myAPP", "NO ESTAMOS CONECTADOS BIEN");
+            }*/
 
             testArchievements();
             showGameSummary();
@@ -262,6 +297,13 @@ public class Main extends PortraitActivity {
         i.putExtra("points", points);
         i.putExtra("achievements", str_logros);
         i.putExtra("difficulty", Main.hard);
+        String str_mode = "";
+        if(mode==1){
+            str_mode = getString(R.string.button1);
+        }else if(mode==2){
+            str_mode = getString(R.string.button2);
+        }
+        i.putExtra("mode", str_mode);
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         Log.i("myAPP", "mode, Main.hard: " + mode + " " + Main.hard + "\npoints, ScoreWarehouseSQLite(this).highestScore(mode, Main.hard): " + points + " " + new ScoreWarehouseSQLite(this).highestScore(mode, Main.hard));
@@ -360,9 +402,12 @@ public class Main extends PortraitActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-            case R.id.menu_score:
-                launchRanking();
+            case R.id.menu_googleplus:
+                logout();
                 return true;
+            /*case R.id.menu_score:
+                launchRanking();
+                return true;*/
             case R.id.menu_share:
                 launchShare();
                 return true;
@@ -511,6 +556,103 @@ public class Main extends PortraitActivity {
 
                         // Commit the transaction.
                 .commit();
+
+        //AUTOMATICAMENTE INTENTAR LOGEAR CON GOOGLE PLAY GAMES
+        login();
+    }
+
+    private void login(){
+        if(!isSignedIn()){
+            beginUserInitiatedSignIn();
+        }
+    }
+
+    private void logout(){
+        signOut();
+        online = false;
+    }
+
+    @Override
+    public void onSignInFailed() {
+        //Toast.makeText(getApplicationContext(), "fail", Toast.LENGTH_SHORT).show();
+        online = false;
+    }
+
+    @Override
+    public void onSignInSucceeded() {
+        //Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
+        online = true;
+        Games.Leaderboards.submitScore(getApiClient(),
+                getString(R.string.leaderboard_scoreboard),
+                points);
+        if(archievements_after_game!=null){
+            if(archievement_warehouse.areAllAcquired()){
+                Games.Achievements.unlock(getApiClient(), getString(R.string.achievement_get_all_the_achievements));
+            }
+        }
+
+        //BLOQUE PARA EJECUTAR SÓLO UNA VEZ TRAS ACTUALIZACIÓN. CUIDADO
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if(!prefs.getBoolean("firstTimeAfterUpgrade", false)) {
+            // run your one time code
+            if(isSignedIn() && score_warehouse!=null && archievement_warehouse!=null){
+                /* copiar las puntuaciones, todas y que se quede solo la más alta (lo hace el servidor) */
+                Games.Leaderboards.submitScore(getApiClient(),
+                        getString(R.string.leaderboard_scoreboard),
+                        score_warehouse.getTopScoreEasy(1).getPoints());
+                Games.Leaderboards.submitScore(getApiClient(),
+                        getString(R.string.leaderboard_scoreboard),
+                        score_warehouse.getTopScoreEasy(2).getPoints());
+                Games.Leaderboards.submitScore(getApiClient(),
+                        getString(R.string.leaderboard_scoreboard),
+                        score_warehouse.getTopScoreHard(1).getPoints());
+                Games.Leaderboards.submitScore(getApiClient(),
+                        getString(R.string.leaderboard_scoreboard),
+                        score_warehouse.getTopScoreHard(2).getPoints());
+
+                /* comprobar cuáles logros posee el jugador en este momento al actualizar y subirlos al servidor sólo esos */
+                archievements_before_game = archievement_warehouse.archievementList(50);
+                for(int i=0; i<Main.archievements_before_game.size(); i++) {
+                    if (Main.archievements_before_game.elementAt(i).getName().equals(getString(R.string.archievements1_easy_100points)) && Main.archievements_before_game.elementAt(i).isAcquired()) {//comprobar los del modo fácil
+                        Games.Achievements.unlock(getApiClient(), getString(R.string.achievement_100_000_points__easy));
+                    } else if (Main.archievements_before_game.elementAt(i).getName().equals(getString(R.string.archievements1_easy_level150)) && Main.archievements_before_game.elementAt(i).isAcquired()) {
+                        Games.Achievements.unlock(getApiClient(), getString(R.string.achievement_level_150__easy));
+                    } else if (Main.archievements_before_game.elementAt(i).getName().equals(getString(R.string.archievements1_easy_level100)) && Main.archievements_before_game.elementAt(i).isAcquired()) {
+                        Games.Achievements.unlock(getApiClient(), getString(R.string.achievement_level_100__easy));
+                    } else if (Main.archievements_before_game.elementAt(i).getName().equals(getString(R.string.archievements1_easy_level50)) && Main.archievements_before_game.elementAt(i).isAcquired()) {
+                        Games.Achievements.unlock(getApiClient(), getString(R.string.achievement_level_50__easy));
+                    } else if (Main.archievements_before_game.elementAt(i).getName().equals(getString(R.string.archievements1_easy_big_chain)) && Main.archievements_before_game.elementAt(i).isAcquired()) {
+                        Games.Achievements.unlock(getApiClient(), getString(R.string.achievement_75_consecutive_hits__easy));
+                    } else if (Main.archievements_before_game.elementAt(i).getName().equals(getString(R.string.archievements1_easy_chain)) && Main.archievements_before_game.elementAt(i).isAcquired()) {
+                        Games.Achievements.unlock(getApiClient(), getString(R.string.achievement_50_consecutive_hits__easy));
+                    } else if (Main.archievements_before_game.elementAt(i).getName().equals(getString(R.string.archievements2_easy_time60)) && Main.archievements_before_game.elementAt(i).isAcquired()) {
+                        Games.Achievements.unlock(getApiClient(), getString(R.string.achievement_earn_60_seconds__easy));
+                    } else if (Main.archievements_before_game.elementAt(i).getName().equals(getString(R.string.archievements1_hard_10lives)) && Main.archievements_before_game.elementAt(i).isAcquired()) { //comprobar los del modo difícil
+                        Games.Achievements.unlock(getApiClient(), getString(R.string.achievement_get_10_lives__hard));
+                    } else if (Main.archievements_before_game.elementAt(i).getName().equals(getString(R.string.archievements1_hard_50points)) && Main.archievements_before_game.elementAt(i).isAcquired()) {
+                        Games.Achievements.unlock(getApiClient(), getString(R.string.achievement_50_000_points__hard));
+                    } else if (Main.archievements_before_game.elementAt(i).getName().equals(getString(R.string.archievements1_hard_level150)) && Main.archievements_before_game.elementAt(i).isAcquired()) {
+                        Games.Achievements.unlock(getApiClient(), getString(R.string.achievement_level_150__hard));
+                    } else if (Main.archievements_before_game.elementAt(i).getName().equals(getString(R.string.archievements1_hard_level100)) && Main.archievements_before_game.elementAt(i).isAcquired()) {
+                        Games.Achievements.unlock(getApiClient(), getString(R.string.achievement_level_100__hard));
+                    } else if (Main.archievements_before_game.elementAt(i).getName().equals(getString(R.string.archievements1_hard_level50)) && Main.archievements_before_game.elementAt(i).isAcquired()) {
+                        Games.Achievements.unlock(getApiClient(), getString(R.string.achievement_level_50__hard));
+                    } else if (Main.archievements_before_game.elementAt(i).getName().equals(getString(R.string.archievements1_hard_big_chain)) && Main.archievements_before_game.elementAt(i).isAcquired()) {
+                        Games.Achievements.unlock(getApiClient(), getString(R.string.achievement_50_consecutive_hits__hard));
+                    } else if (Main.archievements_before_game.elementAt(i).getName().equals(getString(R.string.archievements1_hard_chain)) && Main.archievements_before_game.elementAt(i).isAcquired()) {
+                        Games.Achievements.unlock(getApiClient(), getString(R.string.achievement_25_consecutive_hits__hard));
+                    } else if (Main.archievements_before_game.elementAt(i).getName().equals(getString(R.string.archievements2_hard_time60)) && Main.archievements_before_game.elementAt(i).isAcquired()) {
+                        Games.Achievements.unlock(getApiClient(), getString(R.string.achievement_earn_60_seconds__hard));
+                    } else if (Main.archievements_before_game.elementAt(i).getName().equals(getString(R.string.archievements_all)) && Main.archievements_before_game.elementAt(i).isAcquired()) { //comprobar si se han obtenido todos los logros
+                        Games.Achievements.unlock(getApiClient(), getString(R.string.achievement_get_all_the_achievements));
+                    }
+                }
+                // change value to never enter here again in case it worked, it had connection to server
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putBoolean("firstTime", true);
+                editor.commit();
+            }
+        }
     }
 
     /**
@@ -534,15 +676,111 @@ public class Main extends PortraitActivity {
                                  Bundle savedInstanceState) {
             View inputView = inflater.inflate(R.layout.fragment_card_back, container, false);
             //al usar fragments hasta este punto no se han generado los botones ni sus id correspondientes para poder apuntarlos y asignarles onClick
-            inputView.findViewById(R.id.button1).setOnClickListener(showDifficultyDialog);
-            inputView.findViewById(R.id.button2).setOnClickListener(showDifficultyDialog);
+            getFragmentManager().beginTransaction().add(R.id.frame_button1, new Button1Fragment(), "1").commit();
+            getFragmentManager().beginTransaction().add(R.id.frame_button2, new Button2Fragment(), "1").commit();
+            //inputView.findViewById(R.id.button1).setOnClickListener(showDifficultyDialog);
+            //inputView.findViewById(R.id.button2).setOnClickListener(showDifficultyDialog);
             //inputView.findViewById(R.id.button3).setOnClickListener(showDifficultyDialog);
             inputView.findViewById(R.id.button4).setOnClickListener(openOptions);
+            inputView.findViewById(R.id.button6).setOnClickListener(launchRanking);
 
             inputView.findViewById(R.id.button3).setVisibility(View.GONE);
             return inputView;
         }
     }
+
+    static int button_pressed = 0;
+
+    public static class Button1Fragment extends Fragment {
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View inputView = inflater.inflate(R.layout.main_button, container, false);
+            ((Button)inputView.findViewById(R.id.button)).setText(inputView.getResources().getString(R.string.button1));
+            ((Button)inputView.findViewById(R.id.button)).setCompoundDrawablesWithIntrinsicBounds(R.drawable.pointer_64, 0, 0, 0);
+            ((Button)inputView.findViewById(R.id.button)).setTag("1");
+            ((Button)inputView.findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    getFragmentManager().beginTransaction().setCustomAnimations(R.animator.fade_in, R.animator.fade_out).add(R.id.frame_button1, new DifficultyButtonsFragment(), "2").addToBackStack("1").commit();
+                    //getFragmentManager().popBackStackImmediate("1", 0);
+                    if(getFragmentManager().findFragmentById(R.id.frame_button2).getTag()!="1"){
+                        getFragmentManager().beginTransaction().detach(getFragmentManager().findFragmentById(R.id.frame_button2)).commit();
+                    }
+                    button_pressed = 1;
+                }
+            });
+
+            return inputView;
+        }
+    }
+
+    public static class Button2Fragment extends Fragment {
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View inputView = inflater.inflate(R.layout.main_button, container, false);
+            ((Button)inputView.findViewById(R.id.button)).setText(inputView.getResources().getString(R.string.button2));
+            ((Button)inputView.findViewById(R.id.button)).setCompoundDrawablesWithIntrinsicBounds(R.drawable.chronometer_64, 0, 0, 0);
+            ((Button)inputView.findViewById(R.id.button)).setTag("2");
+            ((Button)inputView.findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    getFragmentManager().beginTransaction().setCustomAnimations(R.animator.fade_in, R.animator.fade_out).add(R.id.frame_button2, new DifficultyButtonsFragment(), "2").addToBackStack("1").commit();
+                    //getFragmentManager().popBackStackImmediate("1", 0);
+                    if(getFragmentManager().findFragmentById(R.id.frame_button1).getTag()!="1"){
+                        getFragmentManager().beginTransaction().detach(getFragmentManager().findFragmentById(R.id.frame_button1)).commit();
+                    }
+                    button_pressed = 2;
+                }
+            });
+
+            return inputView;
+        }
+    }
+
+    public static class DifficultyButtonsFragment extends Fragment {
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View inputView = inflater.inflate(R.layout.difficulty_button, container, false);
+
+             inputView.findViewById(R.id.buttonEasy).setOnClickListener(new View.OnClickListener() {
+                 @Override
+                 public void onClick(View view) {
+                    hard=false;
+                     launchGame(view);
+                 }
+             });
+            inputView.findViewById(R.id.buttonHard).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    hard=true;
+                    launchGame(view);
+                }
+            });
+            return inputView;
+        }
+    }
+
+    static void launchGame(View view) {
+        Intent i = new Intent(view.getContext(), Game.class);
+        switch(button_pressed){
+            case 1:
+                //Toast.makeText(view.getContext(), "1", Toast.LENGTH_SHORT).show();
+                i.putExtra("mode", 1);
+                archievements_before_game = archievement_warehouse.archievementList(50);
+                points_max_before_game = score_warehouse.highestScore(1, hard);
+                break;
+            case 2:
+                //Toast.makeText(view.getContext(), "1", Toast.LENGTH_SHORT).show();
+                i.putExtra("mode", 2);
+                archievements_before_game = archievement_warehouse.archievementList(50);
+                points_max_before_game = score_warehouse.highestScore(2, hard);
+                break;
+        }
+        ((Activity)view.getContext()).startActivityForResult(i, GAME);
+    };
 
     /**
      * A fragment representing the back of the card.
@@ -594,7 +832,7 @@ public class Main extends PortraitActivity {
         }
     };
 
-    static View.OnClickListener showDifficultyDialog = new View.OnClickListener() {
+    /*static View.OnClickListener showDifficultyDialog = new View.OnClickListener() {
         @Override
         public void onClick(final View view) {
             final AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
@@ -613,9 +851,9 @@ public class Main extends PortraitActivity {
             });
             builder.show();
         }
-    };
+    };*/
 
-    static void launchGame(View view) {
+    /*static void launchGame(View view) {
         Intent i = new Intent(view.getContext(), Game.class);
         switch(view.getId()) {
             case R.id.button1:
@@ -636,9 +874,9 @@ public class Main extends PortraitActivity {
                 break;
         }
         ((Activity)view.getContext()).startActivityForResult(i, GAME);
-    };
+    };*/
 
-    static View.OnClickListener startGame = new View.OnClickListener() {
+    /*static View.OnClickListener startGame = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             Intent i = new Intent(view.getContext(), Game.class);
@@ -662,7 +900,7 @@ public class Main extends PortraitActivity {
             }
             ((Activity)view.getContext()).startActivityForResult(i, GAME);
         }
-    };
+    };*/
 
     static View.OnClickListener openOptions = new View.OnClickListener() {
         @Override
